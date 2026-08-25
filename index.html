@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-52FMBN8B');</script>
+<!-- End Google Tag Manager -->
+<!-- Google広告 計測タグ（Google tag / AW-18023727991） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18023727991"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18023727991');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>パーソナルジム DAILY FIT</title>
+<meta name="description" content="不動前・白金高輪の完全個室パーソナルジム。入会金¥11,000、月額¥26,400〜。無理なく続けられる頻度と価格で、暮らしの一部としてコンディショニングを。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#FCFBF6;
+    --panel:#F3F1E9;
+    --ink:#141414;
+    --muted:#6E6E68;
+    --line:#E3E1D6;
+    --check:#1E6F4F;
+    --check-soft:#EAF3EE;
+    --check-bright:#37B27A;
+    --radius:14px;
+    --r-sm:8px;
+    --r-md:12px;
+    --r-lg:16px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Noto Sans JP', sans-serif; font-weight:400; line-height:1.7;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  .display{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-weight:800; letter-spacing:-0.01em;}
+  .mono{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-weight:800;}
+  .eyebrow{font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; display:inline-flex; align-items:center; gap:8px;}
+  .eyebrow::before{content:''; width:14px; height:2px; background:var(--check); display:inline-block;}
+  .final-cta .eyebrow::before{background:var(--check-bright);}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}}
+  :focus-visible{outline:3px solid var(--check); outline-offset:3px;}
+
+  /* ---------- Logo mark ---------- */
+  .logo-mark{
+    border:3px solid var(--ink); border-radius:var(--radius);
+    padding:8px 16px; position:relative; display:inline-block;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800;
+    text-align:center; line-height:1.02;
+  }
+  .logo-mark .l1,.logo-mark .l2{display:block; font-size:18px;}
+  .logo-mark .check{
+    position:absolute; top:-11px; right:-11px; width:24px; height:24px;
+    background:#fff; border-radius:6px;
+  }
+  .logo-mark.small{padding:5px 11px;}
+  .logo-mark.small .l1,.logo-mark.small .l2{font-size:12px;}
+  .logo-mark.small .check{width:16px; height:16px; top:-7px; right:-7px;}
+  .logo-mark.large .l1,.logo-mark.large .l2{font-size:34px;}
+  .logo-mark.large{padding:16px 30px; border-width:4px;}
+  .logo-mark.large .check{width:38px; height:38px; top:-17px; right:-17px;}
+  .logo-caption{font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.16em; color:var(--muted); margin-top:10px; text-align:center;}
+
+  /* ---------- Header ---------- */
+  header{position:sticky; top:0; z-index:50; background:rgba(252,251,246,0.82); backdrop-filter:blur(10px) saturate(1.1); border-bottom:1px solid var(--line);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
+  .nav-left{display:flex; align-items:center; gap:12px;}
+  .nav-left .word{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:15px; letter-spacing:0.01em;}
+  .nav-links{display:flex; gap:30px; font-size:14px; font-weight:500;}
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a::after{content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0%; background:var(--check); transition:width .25s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{background:#F07D35; color:#fff; font-size:13px; font-weight:700; padding:11px 20px; border-radius:8px; white-space:nowrap;}
+  .burger{display:none; flex-direction:column; gap:4px; cursor:pointer; background:none; border:none; padding:4px; z-index:60;}
+  .burger span{width:22px; height:2px; background:var(--ink); display:block; transition:transform .2s ease, opacity .2s ease;}
+  .burger.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .burger.active span:nth-child(2){opacity:0;}
+  .burger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  @media (max-width:840px){.nav-links{display:none;} .nav-cta{display:none;} .burger{display:flex;}}
+
+  /* ---------- モバイルナビドロワー ---------- */
+  .mobile-nav-drawer{
+    display:none; flex-direction:column;
+    background:var(--bg); border-bottom:1px solid var(--line);
+    padding:6px 24px 18px;
+  }
+  .mobile-nav-drawer.open{display:flex;}
+  .mobile-nav-drawer a{
+    padding:13px 0; font-size:15px; font-weight:600; color:var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-nav-drawer .nav-cta{
+    display:block; text-align:center; margin-top:14px;
+    color:#fff; border-bottom:none;
+  }
+
+  /* ---------- モバイル固定CTAバー ---------- */
+  .sticky-cta-bar{display:none;}
+  @media (max-width:840px){
+    .sticky-cta-bar{
+      display:flex; position:fixed; left:0; right:0; bottom:0; z-index:55;
+      padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+      background:rgba(252,251,246,0.92); backdrop-filter:blur(10px) saturate(1.1);
+      border-top:1px solid var(--line);
+    }
+    .sticky-cta-bar a{
+      flex:1; text-align:center; background:#F07D35; color:#fff;
+      font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif;
+      font-size:14.5px; font-weight:700; padding:14px 0; border-radius:10px;
+    }
+    /* 固定バーの分だけ最終CTA直前に余白を作り、ボタンの重なりを防ぐ */
+    body{padding-bottom:68px;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:80px 0 62px; position:relative; overflow:hidden; isolation:isolate;}
+  .hero-bg-stage{position:absolute; inset:0; z-index:0;}
+  .hero-bg-stage::after{
+    content:''; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(10,10,10,0.62), rgba(10,10,10,0.42));
+  }
+  .hero-bg-slide{
+    position:absolute; inset:0;
+    background-size:cover; background-position:center;
+    opacity:0; transition:opacity 1.6s ease-in-out;
+    animation:kenburns 14s ease-in-out infinite alternate;
+  }
+  .hero-bg-slide.active{opacity:1;}
+  @keyframes kenburns{
+    from{transform:scale(1) translate(0,0);}
+    to{transform:scale(1.1) translate(-1.5%,-1%);}
+  }
+  .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1.05fr 0.95fr; gap:60px; align-items:center;}
+  .hero h1{font-size:clamp(32px,4.6vw,50px); line-height:1.24; margin:14px 0 18px; color:#fff; word-break:keep-all; overflow-wrap:anywhere;}
+  .hero p.lead{font-size:16px; color:rgba(255,255,255,0.88); max-width:460px; margin-bottom:24px;}
+  .hero .eyebrow{color:rgba(255,255,255,0.75);}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px;}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:15px 26px; border-radius:9px; font-weight:700; font-size:15px; cursor:pointer; border:1px solid transparent; transition:transform .15s ease, opacity .15s ease;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:#F07D35; color:#fff;}
+  .btn-primary:hover{background:#da6e2d;}
+  .btn-ghost{background:transparent; border:1.5px solid var(--ink); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--check); color:var(--check);}
+  .hero .btn-ghost{border-color:#fff; color:#fff; background:rgba(255,255,255,0.06);}
+  .hero .btn-ghost:hover{border-color:var(--check-bright); color:var(--check-bright); background:rgba(255,255,255,0.1);}
+  .trust-row{display:flex; gap:20px; flex-wrap:wrap; font-size:13px; color:var(--muted);}
+  .hero .trust-row{color:rgba(255,255,255,0.85);}
+  .trust-row li{display:flex; align-items:center; gap:6px;}
+  .trust-row svg{width:14px; height:14px; flex-shrink:0; color:var(--check);}
+  .hero .trust-row svg{color:var(--check-bright);}
+
+  /* Check-card */
+  .check-card{
+    background:rgba(255,255,255,0.98); border:1px solid var(--ink); border-radius:var(--r-lg);
+    padding:30px 28px; position:relative; box-shadow:0 18px 44px -24px rgba(0,0,0,0.4);
+  }
+  .check-card .ribbon{position:absolute; top:-13px; left:28px; background:var(--ink); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:7px; letter-spacing:0.04em;}
+  .check-card h3{font-family:'Plus Jakarta Sans',sans-serif; font-size:16px; font-weight:800; margin-bottom:18px;}
+  .check-row{display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line);}
+  .check-row:last-child{border-bottom:none;}
+  .check-row svg{width:18px; height:18px; flex-shrink:0; margin-top:2px; color:var(--check);}
+  .check-row .t{font-size:14px;}
+  .check-row .t b{display:block; font-weight:700;}
+  .check-row .t span{font-size:12.5px; color:var(--muted);}
+  .check-card .foot-note{margin-top:16px; font-size:11.5px; color:var(--muted); line-height:1.6;}
+
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Section shells ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:600px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3.2vw,38px); margin-top:10px; line-height:1.34; letter-spacing:-0.01em; word-break:keep-all; overflow-wrap:anywhere;}
+  .section-head p{color:var(--muted); margin-top:14px; font-size:15px;}
+  .alt-bg{background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  /* ---------- Worry ---------- */
+  .worry-list{max-width:680px; display:flex; flex-direction:column; gap:14px; counter-reset:worry;}
+  .worry-list li{
+    display:flex; gap:12px; align-items:flex-start; font-size:15px; color:var(--ink);
+    padding-bottom:14px; border-bottom:1px solid var(--line);
+  }
+  .worry-list li::before{
+    counter-increment:worry; content:counter(worry,decimal-leading-zero); flex-shrink:0; width:24px; height:24px; border-radius:50%;
+    background:var(--check); color:#fff; font-family:'Space Mono',monospace; font-weight:700;
+    font-size:13px; display:flex; align-items:center; justify-content:center;
+  }
+  .worry-list li:last-child{border-bottom:none;}
+  .worry-bridge{margin-top:28px; font-size:16px; font-weight:700; color:var(--ink);}
+
+  /* ---------- Concept ---------- */
+  .concept-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  .concept-grid p{font-size:15px; color:var(--muted); margin-bottom:16px;}
+  .concept-quote{font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:22px; line-height:1.6; margin-bottom:22px;}
+  .concept-visual{
+    aspect-ratio:1/1; border-radius:20px; border:1px solid var(--line);
+    background:var(--panel);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    color:var(--muted); overflow:hidden;
+  }
+  .concept-visual img{width:100%; height:100%; object-fit:cover; display:block;}
+  @media (max-width:860px){.concept-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Session flow ---------- */
+  .session-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:36px;}
+  .flow-panel{border-radius:var(--r-lg); padding:30px 28px;}
+  .flow-panel.trial{background:var(--check-soft); border:1px solid rgba(30,111,79,0.25);}
+  .flow-panel.daily{background:#fff; border:1px solid var(--line);}
+  .flow-panel-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:6px;}
+  .flow-panel-head h3{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:19px; font-weight:800;}
+  .flow-panel-head .dur{font-family:'Space Mono',monospace; font-size:12px; font-weight:700; color:var(--check);}
+  .flow-panel>p.cap{font-size:13px; color:var(--muted); margin-bottom:10px;}
+  .flow-step{display:flex; gap:15px; padding:15px 0; border-top:1px solid rgba(0,0,0,0.08);}
+  .flow-step:first-of-type{border-top:none;}
+  .flow-num{font-family:'Space Mono',monospace; font-size:13px; font-weight:700; color:var(--check); width:26px; flex-shrink:0; padding-top:1px;}
+  .flow-step b{display:block; font-size:14.5px; margin-bottom:2px;}
+  .flow-step span{font-size:13px; color:var(--muted); line-height:1.65;}
+  @media (max-width:860px){.session-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Honest pricing ---------- */
+  .honest{background:var(--ink);}
+  .honest .eyebrow{color:rgba(255,255,255,0.72);}
+  .honest .eyebrow::before{background:var(--check-bright);}
+  .honest-grid{display:grid; grid-template-columns:0.92fr 1.08fr; gap:56px; align-items:center;}
+  .honest-intro h2{font-size:clamp(26px,3.2vw,38px); line-height:1.34; letter-spacing:-0.01em; margin:12px 0 14px; color:#fff;}
+  .honest-intro p.sub{color:rgba(255,255,255,0.62); font-size:15px; margin-bottom:24px; max-width:420px;}
+  .honest-facts{display:flex; flex-direction:column; gap:11px;}
+  .honest-facts li{display:flex; gap:9px; align-items:flex-start; font-size:13.5px; color:rgba(255,255,255,0.9);}
+  .honest-facts svg{width:16px; height:16px; flex-shrink:0; margin-top:3px; color:var(--check-bright);}
+  .receipt{border:1px solid rgba(255,255,255,0.14); border-radius:var(--r-md); background:#1C1C1A; padding:28px 28px 24px; box-shadow:0 24px 50px -24px rgba(0,0,0,0.6);}
+  .receipt-head{display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed rgba(255,255,255,0.18); padding-bottom:13px; margin-bottom:15px;}
+  .receipt-head .t{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:11px; letter-spacing:0.06em; color:rgba(255,255,255,0.55); font-weight:700;}
+  .receipt-head .s{font-size:11.5px; color:rgba(255,255,255,0.45);}
+  .receipt-row{display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08);}
+  .receipt-row .k{font-size:14px; color:rgba(255,255,255,0.9);}
+  .receipt-row .k small{color:rgba(255,255,255,0.4); font-size:12px;}
+  .receipt-row .v{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:16px; font-weight:800; color:#fff; white-space:nowrap;}
+  .receipt-row .v.zero{color:var(--check-bright);}
+  .receipt-row.noborder{border-bottom:none; padding-bottom:2px;}
+  .receipt-subrow{display:flex; justify-content:space-between; align-items:baseline; padding:0 0 11px; border-bottom:1px solid rgba(255,255,255,0.08); padding-left:14px;}
+  .receipt-subrow .sk{font-size:12px; color:rgba(255,255,255,0.45);}
+  .receipt-subrow .sv{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:12.5px; font-weight:800; color:var(--check-bright);}
+  .receipt-total{display:flex; justify-content:space-between; align-items:center; margin-top:15px; padding:14px 16px; background:rgba(55,178,122,0.14); border-radius:9px;}
+  .receipt-total .k{font-size:14px; font-weight:700; color:var(--check-bright);}
+  .receipt-total .v{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:18px; font-weight:800; color:var(--check-bright); white-space:nowrap;}
+  .receipt-note{font-size:11.5px; color:rgba(255,255,255,0.4); margin-top:14px; line-height:1.6;}
+  .receipt-note b{color:rgba(255,255,255,0.62);}
+  @media (max-width:860px){.honest-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Pricing ---------- */
+  .shared-conditions{display:flex; gap:20px; flex-wrap:wrap; margin-bottom:28px; padding:16px 20px; border:1px solid var(--line); border-radius:12px; background:#fff;}
+  .shared-conditions li{display:flex; gap:8px; font-size:13px; align-items:center;}
+  .shared-conditions svg{width:14px; height:14px; color:var(--check); flex-shrink:0;}
+
+  .plan-toggle{display:inline-flex; background:var(--panel); border-radius:999px; padding:5px; margin-bottom:32px; gap:4px;}
+  .toggle-btn{
+    border:none; background:none; padding:11px 26px; border-radius:999px; font-size:14px; font-weight:700;
+    font-family:'Noto Sans JP',sans-serif; color:var(--muted); cursor:pointer; transition:background .2s ease, color .2s ease;
+  }
+  .toggle-btn.active{background:var(--ink); color:#fff;}
+  .plan-panel{display:none;}
+  .plan-panel.active{display:block;}
+
+  /* ---------- 料金表 ---------- */
+  .pricing-table-wrap{
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    border-radius:14px; margin-bottom:0;
+  }
+  .pricing-table-wrap::-webkit-scrollbar{height:4px;}
+  .pricing-table-wrap::-webkit-scrollbar-track{background:var(--panel);}
+  .pricing-table-wrap::-webkit-scrollbar-thumb{background:var(--line); border-radius:2px;}
+  .pricing-table{width:100%; border-collapse:separate; border-spacing:0; border-radius:14px; overflow:hidden; border:1px solid var(--line); margin-bottom:16px;}
+  .pricing-table thead th{
+    background:var(--ink); color:#fff; padding:14px 16px; text-align:center;
+    font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:13.5px; font-weight:800;
+    border-right:1px solid rgba(255,255,255,0.12);
+  }
+  .pricing-table thead th:first-child{text-align:left; border-radius:0;}
+  .pricing-table thead th:last-child{border-right:none;}
+  .pricing-table thead th.best-col{background:var(--check);}
+  .pricing-table tbody tr{transition:background .15s ease;}
+  .pricing-table tbody tr:hover{background:var(--check-soft);}
+  .pricing-table tbody td{
+    padding:14px 16px; border-top:1px solid var(--line); border-right:1px solid var(--line);
+    font-size:13.5px; vertical-align:middle; text-align:center;
+  }
+  .pricing-table tbody td:first-child{text-align:left; color:var(--muted); font-size:12.5px; background:var(--panel); white-space:nowrap;}
+  .pricing-table tbody td:last-child{border-right:none;}
+  .pricing-table tbody td.best-col{background:rgba(30,111,79,0.04);}
+  .pt-per-session{
+    font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:22px; font-weight:800; color:var(--ink);
+    display:block; line-height:1.3; padding-top:2px;
+  }
+  .pt-per-session-label{font-size:10px; color:var(--muted); display:block; margin-top:2px;}
+  .pt-monthly{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:13px; font-weight:700; color:var(--muted);}
+  .pt-best-badge{
+    display:inline-block; background:var(--check); color:#fff;
+    font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:4px; margin-bottom:5px;
+    letter-spacing:0.04em;
+  }
+  .pricing-note{font-size:12px; color:var(--muted); line-height:1.8; margin-bottom:28px;}
+  @media (max-width:600px){
+    .pricing-table thead th, .pricing-table tbody td{padding:10px 10px; font-size:12px;}
+    .pt-per-session{font-size:17px;}
+    .pt-monthly{font-size:11.5px;}
+    .pricing-table tbody td:first-child{font-size:11px;}
+  }
+
+  /* ---------- Pair plan ---------- */
+  .pair-photo{margin-top:24px; border-radius:16px; overflow:hidden; position:relative;}
+  .pair-photo img{width:100%; max-height:360px; object-fit:cover; display:block;}
+  .pair-photo-caption{
+    position:absolute; left:18px; bottom:16px; background:rgba(20,20,20,0.72); color:#fff;
+    font-size:12.5px; padding:8px 14px; border-radius:8px; backdrop-filter:blur(3px);
+  }
+  .pair-plans-grid{margin-top:24px; display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .pair-plan{
+    background:#fff; border:2px solid var(--check); border-radius:16px;
+    padding:32px 26px 26px; position:relative;
+  }
+  .pair-badge{
+    position:absolute; top:-14px; left:24px; background:var(--check); color:#fff;
+    font-size:11px; font-weight:700; padding:5px 11px; border-radius:7px; letter-spacing:0.03em;
+  }
+  .pair-grid{display:flex; flex-direction:column; gap:20px;}
+  .pair-copy .term{font-size:11.5px; color:var(--muted); font-weight:700; letter-spacing:0.03em; margin-bottom:6px;}
+  .pair-copy h3{font-family:'Plus Jakarta Sans',sans-serif; font-size:20px; margin-bottom:10px;}
+  .pair-copy .desc{font-size:13.5px; color:var(--muted); margin-bottom:14px;}
+  .pair-copy ul{display:flex; flex-direction:column; gap:8px; margin-bottom:18px; font-size:13px;}
+  .pair-copy ul li{display:flex; gap:7px; align-items:flex-start;}
+  .pair-copy ul svg{width:14px; height:14px; flex-shrink:0; margin-top:2px; color:var(--check);}
+  .pair-price{background:var(--check-soft); border-radius:12px; padding:20px;}
+  .pair-price-main{margin-bottom:12px;}
+  .pair-price-main .label{font-size:11px; color:var(--check); font-weight:700; letter-spacing:0.04em; margin-bottom:3px; display:block;}
+  .pair-price-main .value{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:36px; font-weight:800; color:var(--check); line-height:1.1; display:block;}
+  .pair-price-main .value-sub{font-size:12px; color:var(--muted); margin-top:2px; display:block;}
+  .pair-price-row{display:flex; justify-content:space-between; align-items:baseline; padding:4px 0;}
+  .pair-price-row .label{font-size:12px; color:var(--muted);}
+  .pair-price-row .value{font-size:14px; font-weight:700; color:var(--ink);}
+  .pair-price hr{border:none; border-top:1px dashed #c7ddd1; margin:8px 0 12px;}
+  .pair-price .note{font-size:10.5px; color:var(--muted); line-height:1.7;}
+  @media (max-width:860px){.pair-plans-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Stores ---------- */
+  .store-thumb-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .store-thumb{display:block; text-decoration:none; border-radius:16px; overflow:hidden;}
+  .store-thumb-img{position:relative; aspect-ratio:4/3; overflow:hidden;}
+  .store-thumb-img img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;}
+  .store-thumb:hover .store-thumb-img img{transform:scale(1.04);}
+  .store-thumb-overlay{
+    position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.1) 55%, transparent 100%);
+    display:flex; flex-direction:column; justify-content:flex-end; padding:20px;
+    transition:background .3s ease;
+  }
+  .store-thumb:hover .store-thumb-overlay{background:linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.2) 60%, transparent 100%);}
+  .store-thumb-name{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:4px;}
+  .store-thumb-access{font-size:12.5px; color:rgba(255,255,255,0.8); margin-bottom:10px;}
+  .store-thumb-cta{font-size:12.5px; font-weight:700; color:#fff; opacity:0; transform:translateY(6px); transition:opacity .25s ease, transform .25s ease;}
+  .store-thumb:hover .store-thumb-cta{opacity:1; transform:translateY(0);}
+  @media (max-width:560px){
+    .store-thumb-grid{grid-template-columns:1fr;}
+    .store-thumb-cta{opacity:1; transform:translateY(0);}
+  }
+  .store-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .store-name-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;}
+  .store-name-row h3{margin:0;}
+  .google-badge{
+    display:inline-flex; align-items:center; gap:4px;
+    background:#fff; border:1px solid var(--line); border-radius:6px;
+    padding:3px 8px; text-decoration:none; flex-shrink:0;
+    transition:border-color .15s ease;
+  }
+  .google-badge:hover{border-color:#4285F4;}
+  .google-badge-stars{color:#FBBC05; font-size:10px; letter-spacing:0.5px;}
+  .google-badge-score{font-family:'Space Mono',monospace; font-size:11px; font-weight:700; color:var(--ink);}
+  .google-badge-label{font-size:10px; color:var(--muted);}
+  .store{border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#fff;}
+  .store-photo{aspect-ratio:16/9; background:var(--panel); overflow:hidden;}
+  .store-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .store-body{padding:22px;}
+  .store-body h3{font-family:'Plus Jakarta Sans',sans-serif; font-size:17px; margin-bottom:8px;}
+  .store-body p{font-size:13.5px; color:var(--muted); margin-bottom:14px;}
+  .store-gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:16px;}
+  .store-gallery img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:8px; display:block;}
+  .trainer-mini-group{display:flex; flex-direction:column; gap:8px; margin-bottom:16px;}
+  .store-meta{display:flex; flex-direction:column; gap:7px; margin:14px 0 4px;}
+  .store-meta li{display:flex; gap:12px; font-size:13px; color:var(--ink); line-height:1.55; align-items:flex-start;}
+  .sm-label{font-size:10.5px; letter-spacing:0.06em; color:var(--muted); font-weight:700; width:56px; flex-shrink:0; padding-top:3px;}
+  @media (max-width:760px){.store-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Trainer card ---------- */
+  .trainer-card{padding:0; background:var(--panel); border-radius:12px; margin-bottom:8px; cursor:pointer; overflow:hidden;}
+  .trainer-card:last-of-type{margin-bottom:16px;}
+  .trainer-card-row{display:flex; align-items:center; gap:10px; padding:10px;}
+  .trainer-card-avatar{
+    width:42px; height:42px; border-radius:50%; background:#fff; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--check); overflow:hidden;
+  }
+  .trainer-card-avatar img{width:100%; height:100%; object-fit:cover; cursor:pointer;}
+  .trainer-card-avatar svg{width:20px; height:20px;}
+  .trainer-card-head{flex:1; font-size:12px; line-height:1.4;}
+  .trainer-card-head b{display:block; font-size:13px; font-weight:700;}
+  .trainer-card-head span{color:var(--muted);}
+  .trainer-card-chev{font-size:20px; color:var(--muted); transition:transform .2s ease; flex-shrink:0;}
+  .trainer-card.open .trainer-card-chev{transform:rotate(90deg);}
+  .trainer-card-detail{max-height:0; overflow:hidden; transition:max-height .3s ease; padding:0 16px;}
+  .trainer-card.open .trainer-card-detail{padding:0 16px 16px;}
+  .trainer-card-detail-inner{display:grid; grid-template-columns:1fr 96px; gap:14px; align-items:start;}
+  .trainer-card-photo-lg{
+    width:96px; flex-shrink:0; border-radius:10px; overflow:hidden;
+    aspect-ratio:3/4; align-self:start;
+  }
+  .trainer-card-photo-lg img{width:100%; height:100%; object-fit:cover; object-position:top; cursor:pointer; display:block;}
+  @media (min-width:500px){
+    .trainer-card-detail-inner{grid-template-columns:1fr 120px;}
+    .trainer-card-photo-lg{width:120px;}
+  }
+  .trainer-card-role{font-size:10.5px; color:var(--check); font-weight:700; letter-spacing:0.04em; margin-bottom:2px; padding-top:4px;}
+  .trainer-card-name{font-family:'Plus Jakarta Sans',sans-serif; font-size:15px; font-weight:700; margin-bottom:6px;}
+  .trainer-card-name span{display:block; font-size:11px; font-weight:500; color:var(--muted); margin-top:1px;}
+  .trainer-card-catch{font-size:12.5px; font-weight:700; margin-bottom:6px;}
+  .trainer-card-bio{font-size:12px; color:var(--muted); line-height:1.6;}
+  .tcd-block{display:flex; gap:10px; align-items:baseline; margin-top:11px; flex-wrap:wrap;}
+  .tcd-label{font-size:10px; letter-spacing:0.08em; color:var(--muted); font-weight:700; width:52px; flex-shrink:0;}
+  .tcd-chips{display:flex; flex-wrap:wrap; gap:5px;}
+  .tcd-chip{font-size:11px; padding:3px 9px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--ink);}
+  .tcd-chip.skill{background:var(--check-soft); border-color:transparent; color:var(--check); font-weight:700;}
+  .tcd-days{font-family:'Space Mono',monospace; font-size:12.5px; font-weight:700; color:var(--check);}
+
+  /* ---------- Results ---------- */
+  .result-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .result-card{background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; display:flex; flex-direction:column;}
+  .result-viz{background:var(--check-soft); padding:22px 22px 18px; border-bottom:1px solid rgba(30,111,79,0.12);}
+  .rc-top{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:12px;}
+  .rc-cap{font-size:12px; font-weight:700; color:var(--check); padding-bottom:4px;}
+  .rc-delta{font-family:'Space Mono',monospace; font-size:32px; font-weight:700; color:var(--check); line-height:1;}
+  .rc-delta small{font-size:15px;}
+  .spark{width:100%; height:52px; display:block; overflow:visible;}
+  .spark-dates{display:flex; justify-content:space-between; margin-top:6px;}
+  .spark-date-start,.spark-date-end{font-size:10.5px; color:var(--muted); line-height:1.5;}
+  .spark-date-end{text-align:right; color:var(--check); font-weight:700;}
+  .rc-values{display:flex; align-items:center; gap:12px; margin-top:14px;}
+  .rc-values .v{font-family:'Space Mono',monospace; font-size:16px; font-weight:700; color:var(--ink); line-height:1.1;}
+  .rc-values .v small{display:block; font-family:'Noto Sans JP',sans-serif; font-size:10px; font-weight:400; color:var(--muted); margin-top:3px;}
+  .rc-values .v.end{color:var(--check);}
+  .rc-values .arrow{color:var(--check); font-size:15px; font-family:'Space Mono',monospace;}
+  .streak{display:grid; grid-template-columns:repeat(10,1fr); gap:5px; margin-top:6px;}
+  .streak span{aspect-ratio:1; border-radius:3px; background:rgba(30,111,79,0.15);}
+  .streak span.on{background:var(--check);}
+
+  /* カレンダー形式の継続グリッド */
+  .cal-grid{
+    display:grid; grid-template-columns:repeat(6,1fr); gap:5px; margin-top:10px;
+  }
+  .cal-grid span{
+    aspect-ratio:1; border-radius:4px; background:rgba(30,111,79,0.15); position:relative;
+  }
+  .cal-grid span.on{background:var(--check);}
+  .cal-legend{display:flex; align-items:center; gap:10px; margin-top:10px;}
+  .cal-legend-item{display:flex; align-items:center; gap:5px; font-size:10.5px; color:var(--muted);}
+  .cal-dot{width:10px; height:10px; border-radius:2px; background:rgba(30,111,79,0.15); flex-shrink:0;}
+  .cal-dot.on{background:var(--check);}
+
+  /* 継続期間プログレスバー */
+  .cont-bar-wrap{margin-top:14px;}
+  .cont-bar-track{
+    position:relative; height:10px; background:rgba(30,111,79,0.15); border-radius:999px; overflow:visible;
+  }
+  .cont-bar-fill{
+    position:absolute; left:0; top:0; height:100%;
+    width:83%; /* 2.5/3 ≈ 83% */
+    background:var(--check); border-radius:999px;
+  }
+  .cont-bar-dot{
+    position:absolute; top:50%; left:83%; transform:translate(-50%,-50%);
+    width:16px; height:16px; border-radius:50%; background:var(--check);
+    border:3px solid #fff; box-shadow:0 0 0 2px var(--check);
+  }
+  .cont-bar-labels{
+    display:flex; justify-content:space-between; margin-top:10px;
+    font-size:11px; color:var(--muted);
+  }
+  .cont-bar-labels .now{
+    color:var(--check); font-weight:700; text-align:right; line-height:1.3;
+  }
+  .cont-bar-labels small{font-size:9.5px; font-weight:400;}
+  .rc-caption{font-size:11.5px; color:var(--muted); margin-top:14px; line-height:1.55;}
+  .rank-flow{display:flex; align-items:center; gap:7px; margin-top:14px; padding:8px 0 10px;}
+  .rank-badge{flex:1; text-align:center; font-size:12px; font-weight:700; padding:11px 4px; border-radius:9px; background:#fff; border:1px solid var(--line); color:var(--muted); line-height:1.2; white-space:nowrap;}
+  .rank-badge.on{background:var(--check); border-color:transparent; color:#fff;}
+  .rank-arrow{flex-shrink:0; color:var(--check); font-family:'Space Mono',monospace; font-size:14px; font-weight:700;}
+  .result-body{padding:18px 22px 22px;}
+  .result-period{font-family:'Space Mono',monospace; font-size:12px; color:var(--muted);}
+  .result-quote{font-size:13.5px; margin:12px 0 9px; line-height:1.75;}
+  .result-who{font-size:12px; color:var(--muted);}
+  .result-note{font-size:11.5px; color:#9A9A93; margin-top:24px; text-align:center;}
+  @media (max-width:860px){.result-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  .testi{background:#fff; border:1px solid var(--line); padding:20px; border-radius:14px;}
+  .testi-head{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .avatar{width:40px; height:40px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; font-family:'Plus Jakarta Sans',sans-serif; flex-shrink:0;}
+  .testi-head .who{font-size:13.5px;}
+  .testi-head .who .name{font-weight:700;}
+  .testi-head .who .meta{color:var(--muted); font-size:12px;}
+  .testi-head .who .meta .stars{color:var(--check); letter-spacing:1px; margin-right:5px;}
+  .testi p{font-size:13px;}
+  @media (max-width:1040px){.testi-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.testi-grid{grid-template-columns:1fr;}}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%; text-align:left; background:none; border:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; padding:22px 0; font-size:15px; font-weight:700; gap:16px; font-family:'Noto Sans JP',sans-serif;}
+  .faq-q .plus{font-family:'Space Mono',monospace; font-size:20px; color:var(--muted); transition:transform .2s ease; flex-shrink:0;}
+  .faq-item.open .plus{transform:rotate(45deg); color:var(--check);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-a p{padding:0 0 22px; font-size:14.5px; color:var(--muted); max-width:680px;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{background:var(--ink); color:#fff; border-radius:20px; padding:64px 48px; text-align:center;}
+  .final-cta h2{font-size:clamp(25px,3.4vw,36px); margin-bottom:16px;}
+  .final-cta p{color:#C7C7C3; max-width:460px; margin:0 auto 30px; font-size:15px;}
+  .final-cta .btn-primary{background:#fff; color:var(--ink);}
+  .final-cta .btn-primary:hover{background:#ECEAE2;}
+  .final-cta .micro{margin-top:16px; font-size:11.5px; color:#9A9A96; font-family:'Space Mono',monospace;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:56px 0 32px; border-top:1px solid var(--line);}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; margin-bottom:40px;}
+  .foot-grid h4{font-size:13px; font-weight:700; margin-bottom:14px; letter-spacing:0.03em;}
+  .foot-grid li{font-size:13.5px; color:var(--muted); margin-bottom:8px;}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:24px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.foot-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- Photo lightbox ---------- */
+  .photo-lightbox{
+    position:fixed; inset:0; background:rgba(10,10,10,0.88); z-index:999;
+    display:flex; align-items:center; justify-content:center; padding:40px;
+    opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease;
+  }
+  .photo-lightbox.active{opacity:1; visibility:visible; pointer-events:auto;}
+  .photo-lightbox img{
+    max-width:min(420px, 90vw); max-height:80vh; border-radius:16px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5); object-fit:cover;
+  }
+
+  /* ---------- ギャラリーライトボックス（矢印ナビ付き） ---------- */
+  .gallery-lightbox{
+    position:fixed; inset:0; background:rgba(10,10,10,0.88); z-index:999;
+    display:flex; align-items:center; justify-content:center; padding:40px;
+    opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease;
+  }
+  .gallery-lightbox.active{opacity:1; visibility:visible; pointer-events:auto;}
+  .gallery-lightbox-img{
+    max-width:min(640px, 86vw); max-height:80vh; border-radius:16px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5); object-fit:cover;
+  }
+  .gallery-lightbox-nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:44px; height:44px; border-radius:50%; border:none;
+    background:rgba(255,255,255,0.92); color:var(--ink); font-size:20px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,0.3);
+    /* Safariではbutton要素が親のvisibility:hiddenを正しく継承しないことがあるため、明示的に非表示を指定 */
+    opacity:0; visibility:hidden; pointer-events:none;
+  }
+  .gallery-lightbox.active .gallery-lightbox-nav{opacity:1; visibility:visible; pointer-events:auto;}
+  .gallery-lightbox-nav:hover{background:#fff; color:var(--check);}
+  .gallery-lightbox-prev{left:16px;}
+  .gallery-lightbox-next{right:16px;}
+  .gallery-lightbox-count{
+    position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
+    font-family:'Space Mono',monospace; font-size:12px; color:#fff; opacity:0.8;
+  }
+
+  /* ---------- Store selection modal ---------- */
+  .store-modal{
+    position:fixed; inset:0; background:rgba(10,10,10,0.88); z-index:999;
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease;
+  }
+  .store-modal.active{opacity:1; visibility:visible; pointer-events:auto;}
+  .store-modal-card{
+    background:#fff; border-radius:20px; padding:36px 32px 28px;
+    max-width:380px; width:100%; box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    display:flex; flex-direction:column; align-items:stretch; gap:12px;
+  }
+  .store-modal-title{
+    font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-weight:800;
+    font-size:16px; color:var(--ink); text-align:center; margin-bottom:6px; line-height:1.5;
+  }
+  .store-modal-btn{
+    display:block; padding:17px 24px; border-radius:11px;
+    background:var(--panel); border:1.5px solid var(--line); color:var(--ink);
+    font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif;
+    font-size:15px; font-weight:700; text-align:center;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
+    text-decoration:none; cursor:pointer;
+  }
+  .store-modal-btn:hover{background:var(--check-soft); border-color:var(--check); color:var(--check);}
+  .store-modal-sub{
+    font-family:'Space Mono',monospace; font-size:11px; color:var(--muted);
+    text-align:center; margin-top:4px;
+  }
+
+  /* ---------- アクセス（地図）モーダル ---------- */
+  .access-modal{
+    position:fixed; inset:0; background:rgba(10,10,10,0.88); z-index:999;
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease;
+  }
+  .access-modal.active{opacity:1; visibility:visible; pointer-events:auto;}
+  .access-modal-card{
+    background:#fff; border-radius:20px; padding:28px 28px 24px;
+    max-width:440px; width:100%; max-height:90vh; overflow-y:auto;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .access-modal-head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
+  .access-modal-title{
+    font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-weight:800;
+    font-size:18px; color:var(--ink); line-height:1.4;
+  }
+  .access-modal-close{
+    background:none; border:none; cursor:pointer; font-size:22px; line-height:1;
+    color:var(--muted); padding:0 2px;
+    opacity:0; visibility:hidden;
+  }
+  .access-modal.active .access-modal-close{opacity:1; visibility:visible;}
+  .access-modal-close:hover{color:var(--ink);}
+  .access-modal-map{
+    width:100%; aspect-ratio:4/3; border:0; border-radius:12px;
+    border:1px solid var(--line);
+  }
+  .access-modal-meta{
+    display:flex; flex-direction:column; gap:8px; font-size:14px; color:var(--ink);
+  }
+  .access-modal-meta li{display:flex; gap:8px; line-height:1.6;}
+  .access-modal-meta .sm-label{
+    flex:none; font-family:'Space Mono',monospace; font-size:11px; color:var(--muted);
+    padding-top:3px; min-width:56px;
+  }
+  .access-modal-route{
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    padding:13px 20px; border-radius:10px; border:1.5px solid var(--ink);
+    color:var(--ink); font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif;
+    font-size:14px; font-weight:700; text-decoration:none; cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .access-modal-route:hover{background:var(--check-soft); border-color:var(--check); color:var(--check);}
+</style>
+</head>
+<body id="top">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52FMBN8B"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="nav wrap">
+    <a href="#top" class="nav-left" aria-label="トップに戻る" style="text-decoration:none; color:inherit;">
+      <div class="logo-mark small">
+        <span class="l1">DAILY</span><span class="l2">FIT</span>
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l5 5L19 6"/></svg>
+      </div>
+      <span class="nav-left word">DAILY FIT</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#concept">コンセプト</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <a href="javascript:void(0)" onclick="openStoreModal()" class="nav-cta">無料体験に申し込む</a>
+    <button class="burger" aria-label="メニューを開く" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <a href="#concept" onclick="closeMobileNav()">コンセプト</a>
+    <a href="#faq" onclick="closeMobileNav()">よくある質問</a>
+    <a href="javascript:void(0)" onclick="closeMobileNav(); openStoreModal()" class="nav-cta">無料体験に申し込む</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ===== 1. HERO ===== -->
+<section class="hero">
+  <div class="hero-bg-stage">
+    <div class="hero-bg-slide active" style="background-image:url('assets/images/hero-1.jpg');"></div>
+    <div class="hero-bg-slide" style="background-image:url('assets/images/hero-2.jpg');"></div>
+    <div class="hero-bg-slide" style="background-image:url('assets/images/hero-3.jpg');"></div>
+  </div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">PERSONAL TRAINING GYM</p>
+      <h1 class="display">特別じゃなくていい。<br>日常に溶け込む<wbr>パーソナル。</h1>
+      <p class="lead">不動前・白金高輪の完全個室ジム。短期集中で終わらせず、無理のない頻度と価格で、暮らしの一部としてコンディショニングを続けられる仕組みです。</p>
+      <div class="cta-row">
+        <a href="javascript:void(0)" onclick="openStoreModal()" class="btn btn-primary">無料体験に申し込む</a>
+        <a href="#stores" class="btn btn-ghost">店舗・料金を見る</a>
+      </div>
+      <ul class="trust-row">
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>完全個室・マンツーマン</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>不動前・白金高輪 2店舗</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>1回60分・全プラン共通</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>ペアプランもご用意</li>
+      </ul>
+    </div>
+
+    <div class="check-card reveal">
+      <div class="ribbon">表示金額がすべてです</div>
+      <h3>料金にまつわる、3つの正直な事実</h3>
+      <div class="check-row">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>
+        <div class="t"><b>入会金 ¥11,000（税込）</b><span>全プラン共通・これ以上は発生しません</span></div>
+      </div>
+      <div class="check-row">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>
+        <div class="t"><b>セッション60分</b><span>プレミアム／スタンダードいずれも同じ時間です</span></div>
+      </div>
+      <div class="check-row">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>
+        <div class="t"><b>あなたのペースで選んでOK</b><span>週1回でも週2回でも。頻度も期間も、続けやすさで選べます</span></div>
+      </div>
+      <p class="foot-note">※詳しい料金は「料金プラン」セクションでご確認ください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. WORRY ===== -->
+<section id="worry">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:32px;">
+      <p class="eyebrow">WORRY</p>
+      <h2>こんなお悩み、ありませんか？</h2>
+    </div>
+    <ul class="worry-list reveal">
+      <li>自己流のトレーニングで、フォームが合っているか不安</li>
+      <li>一人だとどうしても続けられず、途中で挫折してしまう</li>
+      <li>過去に無理な食事制限でリバウンドしてしまった</li>
+      <li>高額な料金で、結果が出る前に通えなくなってしまった</li>
+      <li>仕事や生活が忙しく、通う時間や気力が続かない</li>
+    </ul>
+    <p class="worry-bridge reveal">運動が苦手でも、体力に自信がなくても大丈夫。そのお悩みに、無理をさせない形で向き合うのがDAILY FITです。</p>
+  </div>
+</section>
+
+<!-- ===== 3. CONCEPT ===== -->
+<section id="concept" class="alt-bg">
+  <div class="wrap concept-grid">
+    <div class="reveal">
+      <p class="eyebrow">CONCEPT</p>
+      <p class="concept-quote">結果だけを追う、短期集中のジムではありません。</p>
+      <p>無理な追い込みで一時的に変わるより、不動前・白金高輪という街での暮らしに自然に組み込める頻度と価格で、長く続けられるコンディショニングを大切にしています。</p>
+      <p>だからこそ、料金もできるだけシンプルに。入会金・セッション時間はすべてのプランで共通、追加費用が発生する仕組みは作っていません。</p>
+    </div>
+    <div class="concept-visual reveal">
+      <img loading="lazy" src="assets/images/concept.jpg" alt="トレーナーとお客様のカウンセリング風景">
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. SESSION ===== -->
+<section id="session">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">SESSION</p>
+      <h2>入会後の流れ</h2>
+      <p>体験で何をするのか、毎回のセッションで何をするのか。通い始めてからの「思っていたのと違う」をなくすために、先にお伝えします。</p>
+    </div>
+    <div class="session-grid">
+      <div class="flow-panel trial reveal">
+        <div class="flow-panel-head"><h3>無料体験の流れ</h3><span class="dur">約60分・無料</span></div>
+        <p class="cap">当日のご入会を強制することはありません。</p>
+        <div class="flow-step">
+          <span class="flow-num">01</span>
+          <div><b>カウンセリング</b><span>目標・運動歴・お悩みや生活リズムをじっくりヒアリングします。</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">02</span>
+          <div><b>トレーニング体験</b><span>実際に体を動かして、トレーナーとの相性や雰囲気を確かめていただけます。</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">03</span>
+          <div><b>食事のアドバイス</b><span>普段の食事から、無理なく続けられる一歩をご提案します。</span></div>
+        </div>
+      </div>
+      <div class="flow-panel daily reveal">
+        <div class="flow-panel-head"><h3>毎回のセッション</h3><span class="dur">60分・完全個室</span></div>
+        <p class="cap">その日の体調に合わせて内容を調整します。</p>
+        <div class="flow-step">
+          <span class="flow-num">01</span>
+          <div><b>体重・コンディション測定</b><span>変化を数字で把握し、その日の体の状態を確認します。</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">02</span>
+          <div><b>食事フィードバック</b><span>前回からの食習慣を一緒に振り返り、次の一歩を決めます。</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">03</span>
+          <div><b>トレーニング</b><span>ウェイトトレーニング・コンディショニング・ストレッチを、お客様に合わせてカスタマイズします。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. STORES ===== -->
+<section id="stores">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">STORES</p>
+      <h2>2つの店舗から、<wbr>お近くの店舗をお選びください。</h2>
+      <p>料金・トレーナー情報は各店舗ページでご確認いただけます。</p>
+    </div>
+    <div class="store-thumb-grid reveal">
+      <a href="shirokanetakanawa.html" class="store-thumb">
+        <div class="store-thumb-img">
+          <img loading="lazy" src="assets/images/store-shirokanetakanawa.jpg" alt="白金高輪店">
+          <div class="store-thumb-overlay">
+            <span class="store-thumb-name">白金高輪店</span>
+            <span class="store-thumb-access">白金高輪駅 徒歩6分</span>
+            <span class="store-thumb-cta">店舗ページを見る →</span>
+          </div>
+        </div>
+      </a>
+      <a href="fudomae.html" class="store-thumb">
+        <div class="store-thumb-img">
+          <img loading="lazy" src="assets/images/store-fudomae.jpg" alt="不動前店">
+          <div class="store-thumb-overlay">
+            <span class="store-thumb-name">不動前店</span>
+            <span class="store-thumb-access">不動前駅 徒歩6分</span>
+            <span class="store-thumb-cta">店舗ページを見る →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. RESULTS ===== -->
+<section id="results" class="alt-bg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">RESULTS</p>
+      <h2>短期間で劇的に、ではなく。<wbr>続けた人に起きた変化。</h2>
+      <p>無理な追い込みではなく、続けられたからこその変化です。数字で、正直にご紹介します。</p>
+    </div>
+    <div class="result-grid">
+
+      <!-- 体重 -6kg -->
+      <div class="result-card reveal">
+        <div class="result-viz">
+          <div class="rc-top"><span class="rc-cap">体重の変化</span><span class="rc-delta">−6<small>kg</small></span></div>
+          <svg class="spark" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1E6F4F" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="#1E6F4F" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- グリッド線 -->
+            <line x1="0" y1="18" x2="200" y2="18" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <line x1="0" y1="36" x2="200" y2="36" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <line x1="0" y1="54" x2="200" y2="54" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <!-- グラデーション塗りつぶし -->
+            <polygon points="4,12 40,18 80,26 120,36 160,46 196,56 196,66 4,66" fill="url(#sparkGrad)"/>
+            <!-- 折れ線 -->
+            <polyline points="4,12 40,18 80,26 120,36 160,46 196,56" stroke="#1E6F4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- 開始点 -->
+            <circle cx="4" cy="12" r="4" fill="#fff" stroke="#1E6F4F" stroke-width="2"/>
+            <!-- 終了点 -->
+            <circle cx="196" cy="56" r="4" fill="#1E6F4F"/>
+            <!-- X軸 -->
+            <line x1="0" y1="66" x2="200" y2="66" stroke="#C7DDD1" stroke-width="1"/>
+          </svg>
+          <div class="spark-dates">
+            <span class="spark-date-start">2025年4月8日<br><small>ダイエット開始</small></span>
+            <span class="spark-date-end">2025年11月14日<br><small>−6kg 達成</small></span>
+          </div>
+          <div class="rc-caption">ランニングの習慣化と並行して</div>
+        </div>
+        <div class="result-body">
+          <div class="result-period">ダイエット成功</div>
+          <p class="result-quote">「ランニングの習慣化と合わせて、6kgほどのダイエットに成功できました」</p>
+          <div class="result-who">K.K 様</div>
+        </div>
+      </div>
+
+      <!-- 筋肉量 +2段階 -->
+      <div class="result-card reveal">
+        <div class="result-viz">
+          <div class="rc-top"><span class="rc-cap">筋肉量判定の変化</span><span class="rc-delta">+2<small>段階</small></span></div>
+          <div class="rank-flow">
+            <span class="rank-badge">少ない</span>
+            <span class="rank-arrow">→</span>
+            <span class="rank-badge">平均</span>
+            <span class="rank-arrow">→</span>
+            <span class="rank-badge on">やや多い</span>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="result-period">約1年 ／ 体組成計の判定</div>
+          <p class="result-quote">「体組成計の筋肉量が『少ない』から『やや多い』まで上がりました」</p>
+          <div class="result-who">Y.I 様</div>
+        </div>
+      </div>
+
+      <!-- 継続 2.5年 -->
+      <div class="result-card reveal">
+        <div class="result-viz">
+          <div class="rc-top"><span class="rc-cap">継続期間</span><span class="rc-delta">2.5<small>年</small></span></div>
+          <div class="cont-bar-wrap">
+            <div class="cont-bar-track">
+              <div class="cont-bar-fill"></div>
+              <div class="cont-bar-dot"></div>
+            </div>
+            <div class="cont-bar-labels">
+              <span>0</span>
+              <span>1年</span>
+              <span>2年</span>
+              <span class="now">2.5年<br><small>継続中</small></span>
+            </div>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="result-period">2.5年継続 ／ 週1回</div>
+          <p class="result-quote">「オープン当初から2年半、週1回ずっと続けられています」</p>
+          <div class="result-who">O.U 様</div>
+        </div>
+      </div>
+
+    </div>
+    <p class="result-note reveal">※ 記載の数値はお客様の実測値に基づく一例です。成果には個人差があります。</p>
+  </div>
+</section>
+
+<!-- ===== 9. VOICE ===== -->
+<section id="voice">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">VOICE</p>
+      <h2>無理なく続けられた人の声</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="testi-head">
+          <div class="avatar">O</div>
+          <div class="who">
+            <div class="name">o.u様</div>
+            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
+          </div>
+        </div>
+        <p>オープン当初からお世話になっていて、もう2年半になります。きっかけは家からの近さと1回5,500円という料金でしたが、通ってみるとトレーナーがその日のコンディションに合わせてメニューを考えてくれるので、飽きずに週1回続けられています。ウェア・シューズ・タオルが無料で借りられるので、仕事前後でも手ぶらで通えるのが助かっています。</p>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-head">
+          <div class="avatar">Y</div>
+          <div class="who">
+            <div class="name">y.m様</div>
+            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
+          </div>
+        </div>
+        <p>毎回その時の自分に合わせてメニューを変えてくれます。トレーナーさんも気を遣わず話しやすい方で、女性でも通いやすいと感じました。ウェアの貸し出しもあり、店内も清潔です。都度払いができるのも続けやすいポイントでした。</p>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-head">
+          <div class="avatar">K</div>
+          <div class="who">
+            <div class="name">k.k様</div>
+            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
+          </div>
+        </div>
+        <p>趣味のランニングのパフォーマンス向上と、ダイエットの習慣化を目的に通っています。通い始めてから6kgほど体重が落ち、ボディラインも引き締まりました。施設も清潔感があり、女性一人でも気持ちよく集中して取り組める環境です。駅から近いのも通いやすいポイントです。</p>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-head">
+          <div class="avatar">A</div>
+          <div class="who">
+            <div class="name">a.o様</div>
+            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
+          </div>
+        </div>
+        <p>2020年から通っていて、何より続けやすさを感じています。その日の体調やコンディションを見ながら、痛みがある時も負担をかけない工夫をしてくれるので安心です。痩せたい時には食事のアドバイスも具体的にもらえ、トレーニングだけでなく生活全体をサポートしてもらえる感覚です。長く続けたい方には特におすすめです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10. FAQ ===== -->
+<section id="faq" class="alt-bg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>よくあるご質問</h2>
+    </div>
+    <div class="faq-list" style="max-width:760px;">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">どのプランを選べばいいですか？<span class="plus">+</span></button>
+        <div class="faq-a"><p>無理なく通えるペースを優先するなら週1回のライトプラン、しっかり結果を目指すなら週2回のプランがおすすめです。無料体験でトレーナーと相談しながら決められます。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">無料体験の持ち物・服装は？<span class="plus">+</span></button>
+        <div class="faq-a"><p>動きやすい服装でお越しいただくか、手ぶらでも大丈夫です。ウェア・シューズ・タオルは無料でお貸しします（ご持参は靴下のみ）。お仕事帰りにそのままお越しいただけます。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">担当の曜日に通えない週は、どうなりますか？<span class="plus">+</span></button>
+        <div class="faq-a"><p>ご都合が合わない週は、事前にご連絡いただければ別の日への振替が可能です。担当トレーナーの出勤曜日の中で調整しますので、お気軽にご相談ください。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">休会はできますか？<span class="plus">+</span></button>
+        <div class="faq-a"><p>プレミアム・プレミアムライトは、コース期間（6ヵ月）に加えて2ヵ月の有効期限を設けています。スタンダード・スタンダードライトは、コース期間（2ヵ月）に加えて1ヵ月の有効期限を設けています。この有効期限内であれば休会が可能です。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">途中で解約はできますか？<span class="plus">+</span></button>
+        <div class="faq-a"><p>まずは休会制度でご対応いただけます。そのうえで解約も可能ですが、別途違約金が発生します。詳細は無料体験時にご説明いたします。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">使わなかった分は返金されますか？<span class="plus">+</span></button>
+        <div class="faq-a"><p>退会時、ご利用のなかった未消化のチケットは返金いたします。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">支払い方法は何が使えますか？<span class="plus">+</span></button>
+        <div class="faq-a"><p>現金のほか、各種クレジットカードがご利用いただけます。月額のお支払い方法など詳細は、無料体験時にご案内します。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">男女どちらでも通えますか？<span class="plus">+</span></button>
+        <div class="faq-a"><p>はい。完全個室のため男女ともに気兼ねなくご利用いただけます。</p></div>
+      </div>
+    </div>
+    <p class="faq-foot reveal" style="max-width:760px; margin-top:22px; font-size:13.5px; color:var(--muted); line-height:1.7;">そのほか気になることは、無料体験のときにお気軽にご質問ください。料金やプランも、その場で正直にお伝えします。</p>
+  </div>
+</section>
+
+<!-- ===== 11. FINAL CTA ===== -->
+<section>
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <p class="eyebrow" style="color:#9A9A96;">FIRST STEP</p>
+      <h2 class="display">まずは無料体験から、はじめてみませんか。</h2>
+      <p>ヒアリングと体験セッションは無料です。料金やプランも、その場で正直にお伝えします。</p>
+      <a href="javascript:void(0)" onclick="openStoreModal()" class="btn btn-primary">無料体験に申し込む</a>
+      <p class="micro">所要時間 約60分 ー 当日入会の強制なし</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo-mark small" style="margin-bottom:14px;">
+          <span class="l1">DAILY</span><span class="l2">FIT</span>
+          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l5 5L19 6"/></svg>
+        </div>
+        <p style="font-size:13px; color:var(--muted); max-width:240px; margin-top:10px;">特別ではなく、日常に溶け込むパーソナルジム。</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="#concept">コンセプト</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>店舗</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="openAccessModal('shirokanetakanawa')">白金高輪店</a></li>
+          <li><a href="javascript:void(0)" onclick="openAccessModal('fudomae')">不動前店</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>お問い合わせ</h4>
+        <ul>
+            <li><a href="javascript:void(0)" onclick="openStoreModal()">無料体験に申し込む</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 DAILY FIT. All rights reserved.</span>
+      <a href="privacy.html" style="font-size:12px; color:var(--muted); text-decoration:underline; text-decoration-color:var(--line);">プライバシーポリシー</a>
+      <!-- TODO: アナリティクス/計測タグをここに挿入 -->
+    </div>
+  </div>
+</footer>
+
+<!-- トレーナー写真ライトボックス -->
+<div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()">
+  <img id="photo-lightbox-img" alt="">
+</div>
+
+<!-- 店舗ギャラリーライトボックス -->
+<div class="gallery-lightbox" id="gallery-lightbox" onclick="closeGalleryLightbox()">
+  <button type="button" class="gallery-lightbox-nav gallery-lightbox-prev" onclick="event.stopPropagation(); galleryLightboxStep(-1)" aria-label="前の写真">‹</button>
+  <img class="gallery-lightbox-img" id="gallery-lightbox-img" alt="" onclick="event.stopPropagation()">
+  <button type="button" class="gallery-lightbox-nav gallery-lightbox-next" onclick="event.stopPropagation(); galleryLightboxStep(1)" aria-label="次の写真">›</button>
+  <span class="gallery-lightbox-count" id="gallery-lightbox-count"></span>
+</div>
+
+<!-- 店舗選択モーダル -->
+<div class="store-modal" id="store-modal" onclick="closeStoreModal()">
+  <div class="store-modal-card" onclick="event.stopPropagation()">
+    <p class="store-modal-title">ご希望の店舗をお選びください</p>
+    <a href="shirokanetakanawa.html#booking" class="store-modal-btn" onclick="closeStoreModal()">
+      白金高輪店
+    </a>
+    <a href="fudomae.html#booking" class="store-modal-btn" onclick="closeStoreModal()">
+      不動前店
+    </a>
+    <p class="store-modal-sub">各店舗のページでご予約いただけます</p>
+  </div>
+</div>
+
+<!-- アクセス・地図モーダル -->
+<div class="access-modal" id="access-modal" onclick="closeAccessModal()">
+  <div class="access-modal-card" onclick="event.stopPropagation()">
+    <div class="access-modal-head">
+      <p class="access-modal-title" id="access-modal-title"></p>
+      <button type="button" class="access-modal-close" onclick="closeAccessModal()" aria-label="閉じる">×</button>
+    </div>
+    <iframe class="access-modal-map" id="access-modal-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    <ul class="access-modal-meta">
+      <li><span class="sm-label">アクセス</span><span id="access-modal-station"></span></li>
+      <li><span class="sm-label">住所</span><span id="access-modal-address"></span></li>
+    </ul>
+    <a href="javascript:void(0)" id="access-modal-route" target="_blank" rel="noopener" class="access-modal-route">Googleマップでルート検索を開く</a>
+  </div>
+</div>
+
+<!-- モバイル固定CTAバー -->
+<div class="sticky-cta-bar">
+  <a href="javascript:void(0)" onclick="openStoreModal()">無料体験に申し込む</a>
+</div>
+
+<script>
+  /* モバイルナビドロワー */
+  function toggleMobileNav() {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const burger = document.querySelector('.burger');
+    const isOpen = drawer.classList.toggle('open');
+    burger.classList.toggle('active', isOpen);
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+  function closeMobileNav() {
+    document.getElementById('mobile-nav-drawer').classList.remove('open');
+    document.querySelector('.burger').classList.remove('active');
+    document.querySelector('.burger').setAttribute('aria-expanded', 'false');
+  }
+
+  /* 料金タブ切替 */
+  function switchPlanView(target) {
+    document.querySelectorAll('.plan-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + target).classList.add('active');
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.toggle-btn[data-target="' + target + '"]').classList.add('active');
+  }
+
+  /* トレーナーカードのアコーディオン */
+  function toggleTrainer(card) {
+    const detail = card.querySelector('.trainer-card-detail');
+    const isOpen = card.classList.contains('open');
+    if (isOpen) {
+      card.classList.remove('open');
+      detail.style.maxHeight = null;
+    } else {
+      card.classList.add('open');
+      detail.style.maxHeight = detail.scrollHeight + 'px';
+    }
+  }
+
+  /* FAQアコーディオン */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const ans = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      ans.style.maxHeight = ans.scrollHeight + 'px';
+    }
+  }
+
+  /* ヒーロー背景スライドショー */
+  const heroSlides = document.querySelectorAll('.hero-bg-slide');
+  if (heroSlides.length > 1) {
+    let heroIndex = 0;
+    setInterval(() => {
+      heroSlides[heroIndex].classList.remove('active');
+      heroIndex = (heroIndex + 1) % heroSlides.length;
+      heroSlides[heroIndex].classList.add('active');
+    }, 4500);
+  }
+
+  /* スクロールリビール（prefers-reduced-motionを尊重） */
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => obs.observe(el));
+
+  /* トレーナー写真ライトボックス */
+  function openPhotoLightbox(avatarEl) {
+    const img = avatarEl.querySelector('img');
+    if (!img) return;
+    document.getElementById('photo-lightbox-img').src = img.src;
+    document.getElementById('photo-lightbox-img').alt = img.alt;
+    document.getElementById('photo-lightbox').classList.add('active');
+  }
+  function closePhotoLightbox() {
+    document.getElementById('photo-lightbox').classList.remove('active');
+  }
+
+  /* 店舗ギャラリーライトボックス */
+  const GALLERY_INFO = {
+    shirokanetakanawa: [
+      { src: 'assets/images/store-shirokanetakanawa-gallery-1.jpg', alt: '白金高輪店 待合スペース' },
+      { src: 'assets/images/store-shirokanetakanawa-gallery-2.jpg', alt: '白金高輪店 トレーニング機材' },
+      { src: 'assets/images/store-shirokanetakanawa-gallery-3.jpg', alt: '白金高輪店 トレーニング風景' }
+    ],
+    fudomae: [
+      { src: 'assets/images/store-fudomae-gallery-1.jpg', alt: '不動前店 内観2' },
+      { src: 'assets/images/store-fudomae-gallery-2.jpg', alt: '不動前店 内観3' },
+      { src: 'assets/images/store-fudomae-gallery-4.jpg', alt: '不動前店 ストレッチケアの様子' }
+    ]
+  };
+  let galleryLightboxKey = null;
+  let galleryLightboxIndex = 0;
+  function renderGalleryLightbox() {
+    const list = GALLERY_INFO[galleryLightboxKey];
+    const item = list[galleryLightboxIndex];
+    document.getElementById('gallery-lightbox-img').src = item.src;
+    document.getElementById('gallery-lightbox-img').alt = item.alt;
+    document.getElementById('gallery-lightbox-count').textContent = (galleryLightboxIndex + 1) + ' / ' + list.length;
+  }
+  function openGalleryLightbox(storeKey, index) {
+    if (!GALLERY_INFO[storeKey]) return;
+    galleryLightboxKey = storeKey;
+    galleryLightboxIndex = index;
+    renderGalleryLightbox();
+    document.getElementById('gallery-lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeGalleryLightbox() {
+    document.getElementById('gallery-lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function galleryLightboxStep(dir) {
+    const list = GALLERY_INFO[galleryLightboxKey];
+    if (!list) return;
+    galleryLightboxIndex = (galleryLightboxIndex + dir + list.length) % list.length;
+    renderGalleryLightbox();
+  }
+
+  /* 店舗選択モーダル */
+  function openStoreModal() {
+    document.getElementById('store-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeStoreModal() {
+    document.getElementById('store-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  /* アクセス・地図モーダル */
+  const ACCESS_INFO = {
+    shirokanetakanawa: {
+      name: '白金高輪店',
+      station: '白金高輪駅 徒歩6分（古川橋交差点から3分）',
+      address: '東京都港区南麻布2-13-21 S.POINT 南麻布 401'
+    },
+    fudomae: {
+      name: '不動前店',
+      station: '不動前駅 徒歩6分',
+      address: '東京都品川区西五反田4-9-14 ポルトグランデめぐろかむろ坂 2号室'
+    }
+  };
+  function openAccessModal(storeKey) {
+    const info = ACCESS_INFO[storeKey];
+    if (!info) return;
+    document.getElementById('access-modal-title').textContent = info.name + ' アクセス';
+    document.getElementById('access-modal-station').textContent = info.station;
+    document.getElementById('access-modal-address').textContent = info.address;
+    document.getElementById('access-modal-map').src = 'https://maps.google.com/maps?q=' + encodeURIComponent(info.address) + '&output=embed';
+    document.getElementById('access-modal-route').href = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(info.address);
+    document.getElementById('access-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAccessModal() {
+    document.getElementById('access-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closePhotoLightbox();
+      closeStoreModal();
+      closeAccessModal();
+      closeGalleryLightbox();
+      closeMobileNav();
+    }
+    if (document.getElementById('gallery-lightbox').classList.contains('active')) {
+      if (e.key === 'ArrowLeft') galleryLightboxStep(-1);
+      if (e.key === 'ArrowRight') galleryLightboxStep(1);
+    }
+  });
+</script>
+
+</body>
+</html>

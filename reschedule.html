@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-52FMBN8B');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ご予約の日時変更 | DAILY FIT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FCFBF6; --panel:#F3F1E9; --ink:#141414; --muted:#6E6E68;
+    --line:#E3E1D6; --check:#1E6F4F; --check-soft:#EAF3EE; --check-bright:#37B27A;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);line-height:1.8;
+    font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:32px 20px 56px}
+  .brand{font-weight:700;letter-spacing:.16em;font-size:12px;color:var(--muted);text-align:center;margin-bottom:22px}
+  .brand a{color:inherit;text-decoration:none}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 22px}
+  .icon{width:52px;height:52px;border-radius:50%;margin:0 auto 16px;font-size:24px;line-height:52px;text-align:center}
+  .icon.ok{background:var(--check-soft);color:var(--check)}
+  .icon.warn{background:var(--panel);color:var(--muted)}
+  h1{font-size:19px;line-height:1.6;margin:0 0 14px;text-align:center;font-weight:700}
+  p{margin:0 0 14px;font-size:15px}
+  .muted{color:var(--muted);font-size:13px}
+  .center{text-align:center}
+  .detail{background:var(--panel);border-radius:12px;padding:16px 18px;margin:18px 0}
+  .detail dl{margin:0;display:grid;grid-template-columns:5.5em 1fr;row-gap:6px;column-gap:8px;font-size:15px}
+  .detail dt{color:var(--muted);font-size:13px;margin:0;padding-top:2px}
+  .detail dd{margin:0;font-weight:500}
+  .detail dd.old{color:var(--muted);text-decoration:line-through;font-weight:400}
+  .btn{
+    display:block;width:100%;text-align:center;padding:15px 18px;border-radius:12px;
+    background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:16px;
+    margin-top:20px;border:none;cursor:pointer;font-family:inherit;
+  }
+  .btn:disabled{opacity:.5;cursor:default}
+  .btn.sub{background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:500;margin-top:10px;font-size:15px}
+  .notice{border-left:3px solid var(--line);padding:2px 0 2px 12px;color:var(--muted);font-size:13px;margin:18px 0}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:22px;line-height:2}
+  .foot a{color:var(--check);text-decoration:none}
+  .sec{font-size:13px;color:var(--muted);margin:22px 0 8px;font-weight:700}
+  .strip{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch}
+  .d{
+    flex:0 0 auto;width:68px;border:1px solid var(--line);background:#fff;border-radius:12px;
+    padding:8px 0 7px;text-align:center;cursor:pointer;font-size:12px;color:var(--muted);line-height:1.5;
+    font-family:inherit;
+  }
+  .d .num{font-size:18px;font-weight:700;display:block;color:var(--ink)}
+  .d .cnt{font-size:11px;color:var(--check);display:block}
+  .d.off{opacity:.38;cursor:default}
+  .d.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .d.on .num{color:#fff}
+  .d.on .cnt{color:var(--check-bright)}
+  .times{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:8px}
+  .t{
+    display:block;text-align:center;padding:12px 0;border:1px solid var(--line);border-radius:10px;
+    background:#fff;color:var(--ink);font-weight:600;font-size:15px;cursor:pointer;font-family:inherit;
+  }
+  .t.on{background:var(--ink);border-color:var(--ink);color:#fff}
+</style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52FMBN8B"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="wrap">
+  <div class="brand"><a href="/">DAILY FIT</a></div>
+  <div id="app">
+    <div class="card"><p class="center muted">読み込み中…</p></div>
+  </div>
+  <div class="foot">
+    DAILY FIT<br>
+    メール: <a href="mailto:info@dailyfit.jp">info@dailyfit.jp</a><br>
+    電話: <a href="tel:07015808302">070-1580-8302</a>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // 予約システム（Google Apps Script）のAPI。LPの予約ウィジェットと同じURL。
+  var API = 'https://script.google.com/macros/s/AKfycbwLcuFJ0nwYnKDqev21qUrXn2PXGwPfHSEAxMYqA-YHfblRYmDtQ4s2GkMePAJIZ8Zz4g/exec';
+  var CONTACT = 'お電話: 070-1580-8302　メール: info@dailyfit.jp';
+  var WD = ['日', '月', '火', '水', '木', '金', '土'];
+
+  var app = document.getElementById('app');
+  var seq = 0;
+  var state = { store: '', eventId: '', info: null, date: '', time: '' };
+
+  // ---------- 共通ユーティリティ ----------
+  function qs(obj) {
+    var a = [];
+    for (var k in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, k)) {
+        a.push(encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]));
+      }
+    }
+    return a.join('&');
+  }
+
+  // JSONP（別ドメインのAPIをscriptタグ経由で呼ぶ。cookieを使わないのでSafariでも確実に動く）
+  function jsonp(params, done) {
+    var name = '__dfcb' + (++seq);
+    var s = document.createElement('script');
+    var finished = false;
+    function cleanup() {
+      finished = true;
+      try { delete window[name]; } catch (e) { window[name] = undefined; }
+      if (s.parentNode) s.parentNode.removeChild(s);
+    }
+    var timer = setTimeout(function () {
+      if (!finished) { cleanup(); done(null); }
+    }, 20000);
+    window[name] = function (data) {
+      if (finished) return;
+      clearTimeout(timer); cleanup(); done(data);
+    };
+    s.onerror = function () {
+      if (finished) return;
+      clearTimeout(timer); cleanup(); done(null);
+    };
+    s.src = API + '?' + qs(params) + '&callback=' + name;
+    document.body.appendChild(s);
+  }
+
+  function esc(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function param(name) {
+    var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+  }
+
+  function parseDate(dateStr) {
+    var p = dateStr.split('-');
+    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+  }
+
+  function formatJp(dateStr, time) {
+    var d = parseDate(dateStr);
+    return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日（' + WD[d.getDay()] + '） ' + time;
+  }
+
+  // ---------- 画面 ----------
+  function showError(title, message, sub, lineUrl) {
+    app.innerHTML =
+      '<div class="card"><div class="icon warn">!</div>' +
+      '<h1>' + esc(title) + '</h1>' +
+      '<p class="center">' + esc(message) + '</p>' +
+      (sub ? '<p class="muted center">' + esc(sub) + '</p>' : '') +
+      (lineUrl ? '<a class="btn" href="' + esc(lineUrl) + '" target="_blank" rel="noopener">公式LINEで連絡する</a>' : '') +
+      '<p class="muted center">' + CONTACT + '</p></div>';
+  }
+
+  function errorFor(code, info) {
+    var deadline = info && info.deadlineText ? info.deadlineText : '';
+    var booked = info && info.startTimeText ? 'ご予約日時: ' + info.startTimeText : '';
+    var line = (info && info.lineUrl) || '';
+    if (code === 'not_found') {
+      return showError('ご予約が見つかりませんでした',
+        'すでにキャンセル済みか、リンクの有効期限が切れている可能性があります。',
+        'お心当たりがない場合は、お手数ですがご連絡ください。', line);
+    }
+    if (code === 'already_passed') {
+      return showError('このご予約は終了しています',
+        'ご予約の時間をすでに過ぎているため、オンラインでの日時変更はできません。', booked, line);
+    }
+    if (code === 'deadline_passed') {
+      return showError('オンラインでの受付期限を過ぎています',
+        '日時の変更はセッション前日の21時まで承っております。お手数ですが、公式LINE・お電話・メールのいずれかでご連絡ください。',
+        booked + (deadline ? '（受付期限: ' + deadline + '）' : ''), line);
+    }
+    if (code === 'invalid_store' || code === 'invalid_event' || code === 'calendar_not_found') {
+      return showError('リンクが正しく開けませんでした',
+        'メールのリンクをもう一度お試しいただくか、下記までご連絡ください。', '', line);
+    }
+    if (code === 'network') {
+      return showError('通信に失敗しました',
+        '電波状況をご確認のうえ、ページを再読み込みしてお試しください。', '', '');
+    }
+    return showError('エラーが発生しました', 'お手数ですが、下記までご連絡ください。', code || '', line);
+  }
+
+  function renderMain(message) {
+    var info = state.info;
+    app.innerHTML =
+      '<div class="card">' +
+      '<h1>ご予約の日時を変更する</h1>' +
+      '<p class="muted center">現在のご予約は下記の内容です。</p>' +
+      '<div class="detail"><dl>' +
+      '<dt>店舗</dt><dd>DAILY FIT ' + esc(info.storeName) + '</dd>' +
+      '<dt>現在の日時</dt><dd>' + esc(info.startTimeText) + '〜</dd>' +
+      (info.name ? '<dt>お名前</dt><dd>' + esc(info.name) + ' 様</dd>' : '') +
+      '</dl></div>' +
+      (message ? '<p class="center" style="color:#b3261e;font-size:14px">' + esc(message) + '</p>' : '') +
+      '<div class="sec">1. 新しい日付を選ぶ</div>' +
+      '<div class="strip" id="dates"><span class="muted">読み込み中…</span></div>' +
+      '<div class="sec">2. 時間を選ぶ</div>' +
+      '<div id="times"><p class="muted">日付を選んでください。</p></div>' +
+      '<div id="confirm"></div>' +
+      '<div class="notice">オンラインでの日時変更は ' + esc(info.deadlineText) + ' まで受け付けています。<br>' +
+      'キャンセルや、それ以降のご変更は、' + (info.lineUrl ? '公式LINE・' : '') + 'お電話・メールでご連絡ください。</div>' +
+      (info.lineUrl ? '<a class="btn sub" href="' + esc(info.lineUrl) + '" target="_blank" rel="noopener">公式LINEで連絡する</a>' : '') +
+      '</div>';
+    loadDates();
+  }
+
+  function loadDates() {
+    var info = state.info;
+    var el = document.getElementById('dates');
+    jsonp({ action: 'availabilityRange', store: state.store, start: info.minDate, days: info.rescheduleDays || 14 },
+      function (res) {
+        if (!res || res.error || !res.list) {
+          el.innerHTML = '<span class="muted">空き状況を取得できませんでした。時間をおいてお試しください。</span>';
+          return;
+        }
+        el.innerHTML = '';
+        res.list.forEach(function (item) {
+          var d = parseDate(item.date);
+          var open = item.bookable && item.available > 0;
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'd' + (open ? '' : ' off');
+          b.innerHTML =
+            '<span>' + (d.getMonth() + 1) + '/' + d.getDate() + '</span>' +
+            '<span class="num">' + WD[d.getDay()] + '</span>' +
+            '<span class="cnt">' + (open ? '空き' + item.available : '×') + '</span>';
+          if (open) {
+            b.onclick = function () { selectDate(item.date, b); };
+          } else {
+            b.disabled = true;
+          }
+          el.appendChild(b);
+        });
+      });
+  }
+
+  function selectDate(dateStr, btn) {
+    state.date = dateStr;
+    state.time = '';
+    document.getElementById('confirm').innerHTML = '';
+    var all = document.querySelectorAll('#dates .d');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('on');
+    btn.classList.add('on');
+    var timesEl = document.getElementById('times');
+    timesEl.innerHTML = '<p class="muted">読み込み中…</p>';
+    jsonp({ action: 'availability', store: state.store, date: dateStr }, function (res) {
+      if (!res || res.error) {
+        timesEl.innerHTML = '<p class="muted">空き状況を取得できませんでした。時間をおいてお試しください。</p>';
+        return;
+      }
+      if (!res.slots || !res.slots.length) {
+        timesEl.innerHTML = '<p class="muted">この日は空きがありません。別の日付をお選びください。</p>';
+        return;
+      }
+      timesEl.innerHTML = '<div class="times"></div>';
+      var grid = timesEl.firstChild;
+      res.slots.forEach(function (time) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 't';
+        b.textContent = time;
+        b.onclick = function () { selectTime(time, b); };
+        grid.appendChild(b);
+      });
+    });
+  }
+
+  function selectTime(time, btn) {
+    state.time = time;
+    var all = document.querySelectorAll('#times .t');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('on');
+    btn.classList.add('on');
+    var el = document.getElementById('confirm');
+    el.innerHTML =
+      '<div class="detail"><dl>' +
+      '<dt>変更前</dt><dd class="old">' + esc(state.info.startTimeText) + '〜</dd>' +
+      '<dt>変更後</dt><dd>' + esc(formatJp(state.date, time)) + '〜</dd>' +
+      '</dl></div>' +
+      '<button type="button" class="btn" id="go">この日時に変更する</button>';
+    document.getElementById('go').onclick = submit;
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function submit() {
+    var btn = document.getElementById('go');
+    btn.disabled = true;
+    btn.textContent = '変更しています…';
+    jsonp({
+      action: 'rescheduleConfirm',
+      store: state.store,
+      eventId: state.eventId,
+      date: state.date,
+      time: state.time
+    }, function (res) {
+      if (!res) return errorFor('network', state.info);
+      if (res.success) return renderDone(res);
+      if (res.error === 'slot_taken') {
+        return reload('申し訳ありません。この時間はちょうど埋まってしまいました。別の時間をお選びください。');
+      }
+      if (res.error === 'invalid_datetime' || res.error === 'date_not_bookable') {
+        return reload('ご希望の日時が選択できませんでした。日付を選び直してください。');
+      }
+      if (res.error === 'busy_try_again') {
+        return reload('混み合っています。もう一度お試しください。');
+      }
+      return errorFor(res.error, state.info);
+    });
+  }
+
+  function reload(message) {
+    // 予約内容を取り直してから、メッセージ付きで選択画面を再表示
+    jsonp({ action: 'bookingInfo', store: state.store, eventId: state.eventId }, function (res) {
+      if (!res) return errorFor('network', state.info);
+      if (!res.success) return errorFor(res.error, res);
+      state.info = res;
+      state.date = '';
+      state.time = '';
+      renderMain(message);
+    });
+  }
+
+  function renderDone(res) {
+    app.innerHTML =
+      '<div class="card"><div class="icon ok">✓</div>' +
+      '<h1>日時の変更が完了しました</h1>' +
+      '<div class="detail"><dl>' +
+      '<dt>店舗</dt><dd>DAILY FIT ' + esc(res.storeName) + '</dd>' +
+      '<dt>変更前</dt><dd class="old">' + esc(res.oldStartTimeText) + '〜</dd>' +
+      '<dt>変更後</dt><dd>' + esc(res.newStartTimeText) + '〜</dd>' +
+      '</dl></div>' +
+      '<p class="center">変更後の内容を記載したメールをお送りしています。</p>' +
+      '<p class="muted center">当日は動きやすい服装でお越しいただくか、手ぶらでも大丈夫です。<br>' +
+      'ウェア・シューズ・タオルは無料でお貸しします。</p>' +
+      '<a class="btn sub" href="/">DAILY FIT のサイトへ</a>' +
+      '</div>';
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- 起動 ----------
+  state.store = param('store');
+  state.eventId = param('eventId');
+
+  if (!state.store || !state.eventId) {
+    showError('リンクが正しく開けませんでした',
+      'ご予約確認メールに記載のリンクから、もう一度お試しください。', '');
+    return;
+  }
+
+  jsonp({ action: 'bookingInfo', store: state.store, eventId: state.eventId }, function (res) {
+    if (!res) return errorFor('network', null);
+    if (!res.success) return errorFor(res.error, res);
+    state.info = res;
+    renderMain('');
+  });
+})();
+</script>
+</body>
+</html>
