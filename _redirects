@@ -1,0 +1,8 @@
+# 2026/08 のURL構造切り替えで発生した旧URLの404を解消する
+# 旧: /fudomae/index.html (ディレクトリ構成) → 新: /fudomae (fudomae.html)
+/fudomae/index.html            /fudomae             301
+/shirokanetakanawa/index.html  /shirokanetakanawa   301
+
+# / と /index.html が同一内容で重複しているため正規化
+# 実ファイルが存在するパスは通常リダイレクトより優先されるので ! (force) が必要
+/index.html                    /                    301!
