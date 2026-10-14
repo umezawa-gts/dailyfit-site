@@ -7,6 +7,39 @@
 
 ## 2026-10-15 ホスティングを Netlify から GitHub Pages へ移行
 
+### 移行後の検証結果（2026-10-15 完了）
+
+**配信**
+
+| 項目 | 結果 |
+|---|---|
+| 配信元 | `server: GitHub.com`（東京キャッシュ経由） |
+| TLS証明書 | Let's Encrypt `CN=dailyfit.jp`（2027-01-12 まで・自動更新） |
+| Enforce HTTPS | 有効 |
+| `/` `/fudomae` `/shirokanetakanawa` `/privacy` `/reschedule.html` | すべて 200 |
+| `http://` → `https://` | 301 |
+| `https://www` → apex | 301 |
+| HTMLの内容 | 移行前とバイト単位で一致（112,822 bytes） |
+
+**計測タグ（実ブラウザでネットワークを確認）**
+
+| ツール | 結果 |
+|---|---|
+| GTM `GTM-52FMBN8B` | `gtm.js` 200 |
+| GA4 `G-9552DY4P6M` | `gtag/js` 200、`g/collect` 送信、**リアルタイムレポートに反映を確認** |
+| Clarity `yfrx0ppifz` | `clarity.ms/tag` 200、`i.clarity.ms/collect` 204 ×6 |
+| Google 広告 `AW-18023727991` | `gtag/js` 200、`viewthroughconversion` 200、`1p-user-list` 200 |
+| 予約フォーム（Apps Script） | `availabilityRange` 200（空き枠の取得成功） |
+
+GA4 と Google 広告の一部 POST（`analytics.google.com/g/collect`、`google.com/ccm/collect`）が 503 を返していましたが、**GA4のリアルタイムに実データが入っていること、Clarity が全て 204 を返していることから実害なし**と判断しています。計測は冗長な経路で送信されるため、片方が失敗しても欠損しません。検証に使ったブラウザ環境固有の可能性が高いです。
+
+**証明書発行の待ち時間**
+
+DNS切替から証明書発行まで**約19分**かかりました。その間 `https://` は証明書エラーになります。GitHub の画面には `Certificate Request Error: ... will retry automatically` と出ますが、自動で再試行されるので待てば解決します。
+
+**今後、同じ移行をする場合はアクセスの少ない時間帯に実施してください。**
+
+
 ### やったこと
 
 | コミット | 内容 |
