@@ -1762,6 +1762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var MAX_ADVANCE_DAYS = 60;  // Apps Script側のMAX_ADVANCE_DAYSと合わせる
     var dayStripNextOffset = 1; // 次に読み込む先頭日（今日からの日数）
     var dayStripLoading = false;
+    var daySlotsCache = {};  // 日付一覧の応答に同梱された各日の空き時間
 
     function dateStrWithOffset(offsetDays) {
       var d = new Date();
@@ -1787,7 +1788,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           c.classList.toggle('selected', c.dataset.date === dateStr);
         });
       }
-      loadAvailability();
+      if (daySlotsCache[dateStr]) {
+        // 日付一覧と一緒に受け取った空き時間を即表示（通信なし）
+        hideError();
+        if (timeLoading) timeLoading.hidden = true;
+        renderTimeSlots(daySlotsCache[dateStr]);
+      } else {
+        loadAvailability();
+      }
     }
 
     function renderDayChips(list) {
@@ -1837,6 +1845,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             return;
           }
           renderDayChips(res.list);
+          res.list.forEach(function (d) { if (d.slots) daySlotsCache[d.date] = d.slots; });
           dayStripNextOffset += res.list.length;
           if (dayMoreBtn) {
             dayMoreBtn.disabled = false;
@@ -1862,6 +1871,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     loadDayStrip();
 
     function jsonpRequest(params) {
+      // fetch(Cookieなし)を優先する。Googleに複数アカウントでログインしている
+      // ブラウザではJSONP(scriptタグ)がエラーになることがあるため。
+      var qs = Object.keys(params).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+      }).join('&');
+      var base = BOOKING_API_URL + (BOOKING_API_URL.indexOf('?') >= 0 ? '&' : '?') + qs;
+      return fetch(base, { credentials: 'omit' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('http_' + r.status);
+          return r.json();
+        })
+        .catch(function () { return jsonpFallback_(base); });
+    }
+    function jsonpFallback_(baseUrl) {
       return new Promise(function (resolve, reject) {
         var cbName = 'dfjsonp_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
         var script = document.createElement('script');
@@ -1878,10 +1901,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           cleanup();
           resolve(data);
         };
-        var qs = Object.keys(params).map(function (k) {
-          return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
-        }).join('&');
-        script.src = BOOKING_API_URL + (BOOKING_API_URL.indexOf('?') >= 0 ? '&' : '?') + qs + '&callback=' + cbName;
+        script.crossOrigin = 'anonymous'; // Cookieを送らない（複数ログイン対策）
+        script.src = baseUrl + '&callback=' + cbName;
         script.onerror = function () {
           cleanup();
           reject(new Error('network_error'));
@@ -1947,6 +1968,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             showError('空き状況の取得に失敗しました。時間をおいて再度お試しください。');
             return;
           }
+          daySlotsCache[selectedDate] = res.slots || [];
           renderTimeSlots(res.slots || []);
         })
         .catch(function () {
