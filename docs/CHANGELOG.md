@@ -5,6 +5,48 @@
 
 ---
 
+## 2026-10-16 白金高輪ページの閉じタグ漏れを修正（予約ウィジェットが画面外）
+
+### 症状
+
+スマホ幅（390px）で `/shirokanetakanawa` を開くと、ページが横に 186px はみ出し、
+**予約ウィジェットの右側 140px が画面外**になっていた。
+日付チップの右端・時間スロットの4つ目・問い合わせ電話番号が画面外で、
+横スクロールしないと読めない状態。
+
+### 原因
+
+`<section id="stores">` の閉じタグが 3 つ（`</div>` ×2 + `</section>`）欠落していた。
+その結果、以降の全セクション（`#results` / `#voice` / `#faq` / `#booking`）が
+`.store-grid`（`display:grid`）の内側に入り込み、グリッド子要素として
+幅 552px で確定 → 390px のビューポートに収まらなくなっていた。
+
+不動前ページは正常（`main > #booking > .wrap > .final-cta > .booking-widget`）。
+**白金高輪ページのみの不具合で、初回コミット `c66e2a4` から発生していた。**
+
+### 計測値
+
+| | 修正前 | 修正後 | 不動前（参考） |
+|---|---|---|---|
+| `documentElement.scrollWidth`（390px幅） | 576 | 390 | 390 |
+| 横はみ出し量 | 186px | 0 | 0 |
+| `.booking-widget` の位置 | left 70 / right 530 / 幅 460 | left 46 / right 344 / 幅 298 | left 46 / right 344 / 幅 298 |
+
+### 対応
+
+`shirokanetakanawa.html` の `<!-- OTHER STORE -->` 直前に `</div></div></section>` を追加。
+コミット `dcf154d`。
+
+### 再発防止
+
+HTML を編集したら、タグの対応を確認してからコミットする。
+
+```bash
+# 開きと閉じの数が一致していること
+grep -o '<section' shirokanetakanawa.html | wc -l
+grep -o '</section>' shirokanetakanawa.html | wc -l
+```
+
 ## 2026-10-15 ホスティングを Netlify から GitHub Pages へ移行
 
 ### 移行後の検証結果（2026-10-15 完了）
