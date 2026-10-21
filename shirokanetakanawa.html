@@ -1847,6 +1847,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return { cls: 'many small', label: '残り' + available };
     }
 
+    // 選択中の日付チップを横スクロール内に見せる（満枠が続くと右端に隠れてしまうため）
+    function scrollDayChipIntoView(dateStr) {
+      if (!dayStrip) return;
+      var run = function () {
+        var chip = dayStrip.querySelector('.bw-day-chip[data-date="' + dateStr + '"]');
+        if (!chip || !dayStrip.clientWidth) return;
+        var left = chip.offsetLeft - (dayStrip.clientWidth - chip.offsetWidth) / 2;
+        dayStrip.scrollLeft = Math.max(0, left);
+      };
+      // チップ描画直後はレイアウトが未確定でスクロールが効かないため、次フレーム以降に実行する
+      if (window.requestAnimationFrame) {
+        requestAnimationFrame(function () { requestAnimationFrame(run); });
+      }
+      setTimeout(run, 250);
+    }
+
     function selectDay(dateStr) {
       selectedDate = dateStr;
       if (dayStrip) {
@@ -1876,7 +1892,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         chip.className = 'bw-day-chip';
         chip.setAttribute('role', 'listitem');
         chip.dataset.date = d.date;
-        if (!d.bookable) chip.disabled = true;
+        // 営業日でも満枠（available<=0）の日はタップしても時間が出ないので押せなくする
+        if (!d.bookable || !(d.available > 0)) chip.disabled = true;
 
         var dowEl = document.createElement('span');
         dowEl.className = 'dow';
@@ -1919,8 +1936,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             dayMoreBtn.hidden = dayStripNextOffset > MAX_ADVANCE_DAYS;
           }
           if (!selectedDate) {
-            var firstBookable = res.list.filter(function (d) { return d.bookable; })[0];
-            if (firstBookable) selectDay(firstBookable.date);
+            // 「営業日かどうか(bookable)」ではなく「実際に空きがあるか(available)」で初期選択する。
+            // 直近が満枠続きの店舗で、×の日が選ばれたまま止まるのを防ぐ。
+            var firstOpen = res.list.filter(function (d) { return d.bookable && d.available > 0; })[0];
+            if (firstOpen) {
+              selectDay(firstOpen.date);
+              scrollDayChipIntoView(firstOpen.date);
+            } else if (dayStripNextOffset <= MAX_ADVANCE_DAYS) {
+              // 読み込んだ範囲に空きが1日も無ければ、自動で先の日程を取りにいく
+              loadDayStrip();
+            }
           }
         })
         .catch(function () {
