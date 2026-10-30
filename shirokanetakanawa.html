@@ -2082,7 +2082,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                        location.search.match(/[?&]src=([A-Za-z0-9_-]{1,32})/);
         if (srcMatch) { sessionStorage.setItem('df_src', srcMatch[1]); }
         var srcKey = sessionStorage.getItem('df_src');
-        if (srcKey) { sourceLines.push('【きっかけ】' + (SRC_LABELS[srcKey] || ('チラシQR（' + srcKey + '）'))); }
+        // SRC_LABELS に登録したキーだけ記録する。
+        // 広告の最終ページURLに後から utm_campaign を付けた場合に、
+        // 広告経由の予約まで「チラシQR」と記録されるのを防ぐため。
+        if (srcKey && SRC_LABELS[srcKey]) { sourceLines.push('【きっかけ】' + SRC_LABELS[srcKey]); }
       } catch (e) {}
       function buildNote(fd) {
         var note = fd.get('note') || '';
