@@ -2007,17 +2007,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     if (form) {
-      // 流入元の記録（Google広告クリックの自動判定のみ）
-      var cameFromAd = false;
+      // 流入元の記録（Google広告クリックの自動判定 ＋ チラシQRのUTM）
+      // 例: dailyfit.jp/shirokanetakanawa?utm_source=townplus&utm_medium=flyer&utm_campaign=sky
+      //     → 備考に「【きっかけ】白金ザ・スカイ向けチラシ（タウンプラス）」を追記
+      var SRC_LABELS = { sky: '白金ザ・スカイ向けチラシ（タウンプラス）' };
+      var sourceLines = [];
       try {
-        if (/[?&]gclid=/.test(location.search)) { cameFromAd = true; sessionStorage.setItem('df_ad', '1'); }
-        else if (sessionStorage.getItem('df_ad') === '1') { cameFromAd = true; }
+        if (/[?&]gclid=/.test(location.search)) { sessionStorage.setItem('df_ad', '1'); }
+        if (sessionStorage.getItem('df_ad') === '1') { sourceLines.push('【きっかけ】Google広告クリック経由'); }
+        // utm_campaign（GA4と共通のUTM）を優先し、互換のため src= も受け付ける
+        var srcMatch = location.search.match(/[?&]utm_campaign=([A-Za-z0-9_-]{1,32})/) ||
+                       location.search.match(/[?&]src=([A-Za-z0-9_-]{1,32})/);
+        if (srcMatch) { sessionStorage.setItem('df_src', srcMatch[1]); }
+        var srcKey = sessionStorage.getItem('df_src');
+        // SRC_LABELS に登録したキーだけ記録する。
+        // 広告の最終ページURLに後から utm_campaign を付けた場合に、
+        // 広告経由の予約まで「チラシQR」と記録されるのを防ぐため。
+        if (srcKey && SRC_LABELS[srcKey]) { sourceLines.push('【きっかけ】' + SRC_LABELS[srcKey]); }
       } catch (e) {}
       function buildNote(fd) {
         var note = fd.get('note') || '';
-        if (!cameFromAd) return note;
-        var line = '【きっかけ】Google広告クリック経由';
-        return note ? (note + '\n' + line) : line;
+        if (!sourceLines.length) return note;
+        return note ? (note + '\n' + sourceLines.join('\n')) : sourceLines.join('\n');
       }
       form.addEventListener('submit', function (ev) {
         ev.preventDefault();
