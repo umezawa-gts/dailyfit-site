@@ -249,9 +249,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .terms-item p{font-size:13.5px; line-height:1.85; color:var(--ink);}
   .terms-item .ex{display:block; margin-top:7px; font-size:12.5px; color:var(--muted); background:#fff; border:1px solid var(--line); border-radius:var(--r-sm); padding:8px 11px; line-height:1.7;}
   /* 予約前の安心ブロック */
-  .assure-box{margin:0 0 18px; background:rgba(55,178,122,0.1); border:1px solid rgba(55,178,122,0.4); border-radius:var(--r-md); padding:14px 16px; text-align:left;}
-  .assure-box b{display:block; font-size:13.5px; font-weight:700; color:var(--check-bright); margin-bottom:5px;}
-  .assure-box p{font-size:12.5px; line-height:1.8; color:rgba(255,255,255,0.78); margin:0;}
+  .assure-line{display:inline-flex; align-items:center; gap:7px; margin:-16px auto 24px !important;
+    font-size:13px; color:var(--check-bright) !important; font-weight:600; line-height:1.5; white-space:nowrap;}
+  .assure-line svg{width:15px; height:15px; flex-shrink:0;}
+  @media (max-width:600px){.assure-line{font-size:12px; margin:-10px auto 20px !important;}}
 
   /* ---------- Section shells ---------- */
   section{padding:88px 0;}
@@ -1567,6 +1568,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="eyebrow" style="color:#9A9A96;">FIRST STEP</p>
       <h2 class="display">無料体験のご予約</h2>
       <p>ヒアリングと体験セッションは無料です。ご希望の日時をお選びください。</p>
+      <p class="assure-line"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>無料体験に契約の義務はありません</p>
 
       <div class="booking-widget reveal" id="booking-widget">
         <div class="bw-step" id="bw-step-date">
@@ -1585,10 +1587,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="bw-step" id="bw-step-form" hidden>
-          <div class="assure-box">
-            <b>無料体験に、契約の義務はありません</b>
-            <p>体験当日にご入会を決めていただく必要はありません。料金・コース期間・休会や解約の条件は、その場ですべてご説明します。</p>
-          </div>
           <p class="bw-label">STEP 3 お客様情報のご入力</p>
           <form id="bw-form" class="bw-form">
             <div class="bw-selected-summary" id="bw-selected-summary"></div>
