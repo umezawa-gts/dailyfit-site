@@ -153,11 +153,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .sticky-cta-bar.is-hidden{
       transform:translateY(110%); opacity:0; pointer-events:none;
     }
+    /* ページ内リンクなので塗りつぶしにしない。オレンジは予約確定ボタン専用 */
     .sticky-cta-bar a{
-      flex:1; text-align:center; background:#F07D35; color:#fff;
+      flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
+      background:transparent; border:1.5px solid var(--ink); color:var(--ink);
       font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif;
-      font-size:14.5px; font-weight:700; padding:14px 0; border-radius:10px;
+      font-size:14.5px; font-weight:700; padding:12px 0; border-radius:10px;
     }
+    .sticky-cta-bar a .arw{font-size:13px; opacity:.8;}
     /* 固定バーの分だけ最終CTA直前に余白を作り、ボタンの重なりを防ぐ */
     body{padding-bottom:68px;}
   }
@@ -195,6 +198,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .btn-primary{background:#F07D35; color:#fff;}
   .btn-primary:hover{background:#da6e2d;}
   .btn-ghost{background:transparent; border:1.5px solid var(--ink); color:var(--ink);}
+  /* ページ内リンク（アンカー）は塗りつぶしボタンにしない */
+  .btn-anchor{font-weight:600; gap:6px;}
+  .btn-anchor .arw{font-size:13px; opacity:.85;}
   .btn-ghost:hover{border-color:var(--check); color:var(--check);}
   .hero .btn-ghost{border-color:#fff; color:#fff; background:rgba(255,255,255,0.06);}
   .hero .btn-ghost:hover{border-color:var(--check-bright); color:var(--check-bright); background:rgba(255,255,255,0.1);}
@@ -243,9 +249,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .terms-item p{font-size:13.5px; line-height:1.85; color:var(--ink);}
   .terms-item .ex{display:block; margin-top:7px; font-size:12.5px; color:var(--muted); background:#fff; border:1px solid var(--line); border-radius:var(--r-sm); padding:8px 11px; line-height:1.7;}
   /* 予約前の安心ブロック */
-  .assure-box{max-width:760px; margin:0 auto 26px; background:var(--check-soft); border:1px solid #CFE3D7; border-radius:var(--r-lg); padding:20px 22px; text-align:left;}
-  .assure-box b{display:block; font-size:15px; font-weight:800; color:var(--check); margin-bottom:6px;}
-  .assure-box p{font-size:13.5px; line-height:1.85; color:#2F4A3C; margin:0;}
+  .assure-box{margin:0 0 18px; background:rgba(55,178,122,0.1); border:1px solid rgba(55,178,122,0.4); border-radius:var(--r-md); padding:14px 16px; text-align:left;}
+  .assure-box b{display:block; font-size:13.5px; font-weight:700; color:var(--check-bright); margin-bottom:5px;}
+  .assure-box p{font-size:12.5px; line-height:1.8; color:rgba(255,255,255,0.78); margin:0;}
 
   /* ---------- Section shells ---------- */
   section{padding:88px 0;}
@@ -607,12 +613,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .final-cta p{color:#C7C7C3; max-width:460px; margin:0 auto 30px; font-size:15px;}
   .final-cta .btn-primary{background:#fff; color:var(--ink);}
   .final-cta .btn-primary:hover{background:#ECEAE2;}
+  /* 実際に予約が確定するボタンだけをオレンジにする（ページ内リンクと区別するため） */
+  .final-cta .bw-submit, .final-cta .bw-submit:hover{background:#F07D35; color:#fff;}
   .final-cta .micro{margin-top:16px; font-size:11.5px; color:#9A9A96; font-family:'Space Mono',monospace;}
 
   /* ---------- Booking embed（Googleカレンダー予約埋め込み） ---------- */
   .booking-fallback-note{margin-top:16px; font-size:12px; color:#9A9A96; line-height:1.7;}
   .booking-fallback-note a{color:var(--check-bright); text-decoration:underline; text-underline-offset:2px;}
-  @media (max-width:600px){.final-cta{padding:48px 22px;}}
+  @media (max-width:600px){.final-cta{padding:30px 16px 36px;} .final-cta h2{margin-bottom:10px;} .final-cta p{margin-bottom:20px; font-size:14px;}}
 
   /* ---------- Booking widget（オリジナル予約フォーム） ---------- */
   .booking-widget{margin:32px auto 0; max-width:460px; text-align:left;}
@@ -674,7 +682,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding:12px 14px; border-radius:9px; border:1.5px solid rgba(255,255,255,0.18); background:#fff; color:var(--ink);
     font-family:'Noto Sans JP',sans-serif; font-size:14px; font-weight:400; resize:vertical;
   }
-  .bw-submit{align-self:flex-start; margin-top:4px;}
+  .bw-submit{align-self:stretch; width:100%; justify-content:center; margin-top:8px; font-size:16px; padding:17px 0;}
   .bw-submit[disabled]{opacity:0.5; cursor:default;}
   .bw-done-icon{width:52px; height:52px; border-radius:50%; background:var(--check-bright); color:#0d1f16; font-size:24px; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;}
   .bw-step-done{text-align:center;}
@@ -870,8 +878,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-rest">
       <p class="lead">白金高輪駅から徒歩6分。都心の静かな完全個室で、仕事帰りにも気軽に立ち寄れるパーソナルジムです。</p>
       <div class="cta-row">
-        <a href="#booking" class="btn btn-primary">無料体験に申し込む</a>
-        <a href="#pricing" class="btn btn-ghost">料金プランを見る</a>
+        <a href="#booking" class="btn btn-ghost btn-anchor">無料体験の予約枠を見る<span class="arw">↓</span></a>
       </div>
       <ul class="trust-row">
         <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>完全個室・マンツーマン</li>
@@ -1558,13 +1565,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="final-cta reveal">
       <p class="eyebrow" style="color:#9A9A96;">FIRST STEP</p>
-      <h2 class="display">まずは無料体験から、はじめてみませんか。</h2>
-      <p>ヒアリングと体験セッションは無料です。料金やプランも、その場で正直にお伝えします。以下からご希望の日時をお選びのうえ、そのままご予約ください。</p>
-
-      <div class="assure-box reveal">
-        <b>無料体験に、契約の義務はありません</b>
-        <p>体験当日にご入会を決めていただく必要はありません。料金・コース期間・休会や解約の条件は、その場ですべてご説明します。お持ち帰りいただいて構いません。</p>
-      </div>
+      <h2 class="display">無料体験のご予約</h2>
+      <p>ヒアリングと体験セッションは無料です。ご希望の日時をお選びください。</p>
 
       <div class="booking-widget reveal" id="booking-widget">
         <div class="bw-step" id="bw-step-date">
@@ -1583,6 +1585,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="bw-step" id="bw-step-form" hidden>
+          <div class="assure-box">
+            <b>無料体験に、契約の義務はありません</b>
+            <p>体験当日にご入会を決めていただく必要はありません。料金・コース期間・休会や解約の条件は、その場ですべてご説明します。</p>
+          </div>
           <p class="bw-label">STEP 3 お客様情報のご入力</p>
           <form id="bw-form" class="bw-form">
             <div class="bw-selected-summary" id="bw-selected-summary"></div>
@@ -1700,7 +1706,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- モバイル固定CTAバー -->
 <div class="sticky-cta-bar">
-  <a href="#booking">無料体験に申し込む</a>
+  <a href="#booking">無料体験の予約枠を見る<span class="arw">↓</span></a>
 </div>
 
 <script>
