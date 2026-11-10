@@ -385,6 +385,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:4px; margin-bottom:5px;
     letter-spacing:0.04em;
   }
+  .pt-sub-badge{
+    display:inline-block; background:transparent; color:rgba(255,255,255,0.85);
+    border:1px solid rgba(255,255,255,0.5);
+    font-size:9.5px; font-weight:700; padding:1px 6px; border-radius:4px; margin-bottom:5px;
+    letter-spacing:0.04em;
+  }
   .pricing-note{font-size:12px; color:var(--muted); line-height:1.8; margin-bottom:28px;}
   @media (max-width:600px){
     .pricing-table thead th, .pricing-table tbody td{padding:10px 10px; font-size:12px;}
@@ -1017,11 +1023,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <thead>
           <tr>
             <th></th>
-            <th class="best-col">
-              <span class="pt-best-badge">最もお得</span><br>
+            <th>
+              <span class="pt-sub-badge">1回あたり最安</span><br>
               プレミアム
             </th>
-            <th>プレミアムライト</th>
+            <th class="best-col">
+              <span class="pt-best-badge">おすすめ</span><br>
+              プレミアムライト
+            </th>
             <th>スタンダード</th>
             <th>スタンダードライト</th>
           </tr>
@@ -1029,39 +1038,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <tbody>
           <tr>
             <td>1回あたり</td>
+            <td><b class="pt-per-session" style="font-size:18px;">¥6,500</b></td>
             <td class="best-col">
-              <b class="pt-per-session">¥6,500</b>
+              <b class="pt-per-session">¥7,600</b>
               <span class="pt-per-session-label">/ 60分セッション</span>
             </td>
-            <td><b class="pt-per-session" style="font-size:18px;">¥7,600</b></td>
             <td><b class="pt-per-session" style="font-size:18px;">¥8,150</b></td>
             <td><b class="pt-per-session" style="font-size:18px;">¥8,700</b></td>
           </tr>
           <tr>
             <td>月額（税込）</td>
-            <td class="best-col"><span class="pt-monthly">¥52,000</span></td>
-            <td><span class="pt-monthly">¥30,400</span></td>
+            <td><span class="pt-monthly">¥52,000</span></td>
+            <td class="best-col"><span class="pt-monthly">¥30,400</span></td>
             <td><span class="pt-monthly">¥65,200</span></td>
             <td><span class="pt-monthly">¥34,800</span></td>
           </tr>
           <tr>
             <td>コース期間</td>
-            <td class="best-col">6ヵ月</td>
             <td>6ヵ月</td>
+            <td class="best-col">6ヵ月</td>
             <td>2ヵ月</td>
             <td>2ヵ月</td>
           </tr>
           <tr>
             <td>頻度</td>
-            <td class="best-col">週2回</td>
-            <td>週1回</td>
+            <td>週2回</td>
+            <td class="best-col">週1回</td>
             <td>週2回</td>
             <td>週1回</td>
           </tr>
           <tr>
             <td>総回数</td>
-            <td class="best-col">48回</td>
-            <td>24回</td>
+            <td>48回</td>
+            <td class="best-col">24回</td>
             <td>16回</td>
             <td>8回</td>
           </tr>
