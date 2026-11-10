@@ -147,6 +147,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding:10px 16px calc(10px + env(safe-area-inset-bottom));
       background:rgba(252,251,246,0.92); backdrop-filter:blur(10px) saturate(1.1);
       border-top:1px solid var(--line);
+      transition:transform .25s ease, opacity .25s ease;
+    }
+    /* 予約セクションに到達したら、本物のCTA（この内容で予約する）と競合しないよう退避 */
+    .sticky-cta-bar.is-hidden{
+      transform:translateY(110%); opacity:0; pointer-events:none;
     }
     .sticky-cta-bar a{
       flex:1; text-align:center; background:#F07D35; color:#fff;
@@ -159,6 +164,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---------- Hero ---------- */
   .hero{padding:80px 0 62px; position:relative; overflow:hidden; isolation:isolate;}
+  @media (max-width:900px){ .hero{padding:30px 0 40px;} }
   .hero-bg-stage{position:absolute; inset:0; z-index:0;}
   .hero-bg-stage::after{
     content:''; position:absolute; inset:0; z-index:1;
@@ -883,10 +889,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="check-row">
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>
-        <div class="t"><b>体験当日のご入会で入会金0円</b><span>通常 ¥11,000（税込・全プラン共通）</span></div>
-      </div>
-      <div class="check-row">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>
         <div class="t"><b>まとまった前払いは不要。お支払いは毎月です</b><span>コース期間はプレミアム系6ヵ月／スタンダード系2ヵ月</span></div>
       </div>
       <div class="check-row">
@@ -894,6 +896,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="t"><b>追加費用なし</b><span>表示金額がすべてです。ウェア・シューズ・タオル無料貸出、プロテイン無料</span></div>
       </div>
       <a href="#pricing" class="pc-link">料金プランをすべて見る →</a>
+      <p class="foot-note">※入会金は通常 ¥11,000（税込・全プラン共通）です。</p>
     </div>
   </div>
 </section>
@@ -1773,6 +1776,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   }, { threshold: 0.15 });
   reveals.forEach(el => obs.observe(el));
+
+  /* 予約セクションが見えている間は固定CTAバーを隠す
+     （ページ内リンクの「無料体験に申し込む」が、実際の送信ボタン
+       「この内容で予約する」と並んで出てしまうのを防ぐ） */
+  (function () {
+    const bar = document.querySelector('.sticky-cta-bar');
+    const booking = document.getElementById('booking');
+    if (!bar || !booking) return;
+    if (!('IntersectionObserver' in window)) return;
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => bar.classList.toggle('is-hidden', e.isIntersecting));
+    }, { rootMargin: '0px 0px -40% 0px' });
+    barObs.observe(booking);
+  })();
 
   /* トレーナー写真ライトボックス */
   function openPhotoLightbox(avatarEl) {
