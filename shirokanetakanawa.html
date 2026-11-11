@@ -145,18 +145,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding:10px 16px calc(10px + env(safe-area-inset-bottom));
       background:rgba(252,251,246,0.92); backdrop-filter:blur(10px) saturate(1.1);
       border-top:1px solid var(--line);
+      transition:transform .25s ease, opacity .25s ease;
     }
+    /* 予約セクションに到達したら、本物のCTA（この内容で予約する）と競合しないよう退避 */
+    .sticky-cta-bar.is-hidden{
+      transform:translateY(110%); opacity:0; pointer-events:none;
+    }
+    /* ページ内リンクなので塗りつぶしにしない。オレンジは予約確定ボタン専用 */
     .sticky-cta-bar a{
-      flex:1; text-align:center; background:#F07D35; color:#fff;
+      flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
+      background:transparent; border:1.5px solid var(--ink); color:var(--ink);
       font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif;
-      font-size:14.5px; font-weight:700; padding:14px 0; border-radius:10px;
+      font-size:14.5px; font-weight:700; padding:12px 0; border-radius:10px;
     }
+    .sticky-cta-bar a .arw{font-size:13px; opacity:.8;}
     /* 固定バーの分だけ最終CTA直前に余白を作り、ボタンの重なりを防ぐ */
     body{padding-bottom:68px;}
   }
 
   /* ---------- Hero ---------- */
   .hero{padding:80px 0 62px; position:relative; overflow:hidden; isolation:isolate;}
+  @media (max-width:900px){ .hero{padding:30px 0 40px;} }
   .hero-bg-stage{position:absolute; inset:0; z-index:0;}
   .hero-bg-stage::after{
     content:''; position:absolute; inset:0; z-index:1;
@@ -173,7 +182,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     from{transform:scale(1) translate(0,0);}
     to{transform:scale(1.1) translate(-1.5%,-1%);}
   }
-  .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1.05fr 0.95fr; gap:60px; align-items:center;}
+  .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1.05fr 0.95fr;
+    grid-template-areas:"head card" "rest card"; column-gap:60px; row-gap:0; align-items:center;}
+  .hero-head{grid-area:head;}
+  .hero-rest{grid-area:rest;}
+  .hero-grid > .check-card{grid-area:card;}
   .hero h1{font-size:clamp(32px,4.6vw,50px); line-height:1.24; margin:14px 0 18px; color:#fff; word-break:keep-all; overflow-wrap:anywhere;}
   .hero p.lead{font-size:16px; color:rgba(255,255,255,0.88); max-width:460px; margin-bottom:24px;}
   .hero .eyebrow{color:rgba(255,255,255,0.75);}
@@ -183,6 +196,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .btn-primary{background:#F07D35; color:#fff;}
   .btn-primary:hover{background:#da6e2d;}
   .btn-ghost{background:transparent; border:1.5px solid var(--ink); color:var(--ink);}
+  /* ページ内リンク（アンカー）は塗りつぶしボタンにしない */
+  .btn-anchor{font-weight:600; gap:6px;}
+  .btn-anchor .arw{font-size:13px; opacity:.85;}
   .btn-ghost:hover{border-color:var(--check); color:var(--check);}
   .hero .btn-ghost{border-color:#fff; color:#fff; background:rgba(255,255,255,0.06);}
   .hero .btn-ghost:hover{border-color:var(--check-bright); color:var(--check-bright); background:rgba(255,255,255,0.1);}
@@ -207,7 +223,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .check-row .t span{font-size:12.5px; color:var(--muted);}
   .check-card .foot-note{margin-top:16px; font-size:11.5px; color:var(--muted); line-height:1.6;}
 
-  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; grid-template-areas:"head" "card" "rest"; row-gap:26px;}
+  }
+  /* 価格カード */
+  .price-card .pc-price{margin:2px 0 16px;}
+  .price-card .pc-amount{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:34px; letter-spacing:-0.01em; line-height:1.1;}
+  .price-card .pc-tilde{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:20px; margin-left:2px;}
+  .price-card .pc-note{display:block; font-size:12.5px; color:var(--muted); margin-top:6px; line-height:1.6;}
+  .price-card .pc-link{display:inline-block; margin-top:16px; font-size:13.5px; font-weight:700; color:#F07D35;}
+  .price-card .pc-link:hover{text-decoration:underline;}
+  @media (max-width:900px){
+    .price-card{padding:24px 20px;}
+    .price-card .pc-amount{font-size:30px;}
+  }
+  /* 休会・解約 */
+  .terms-box{max-width:760px; margin:40px auto 0; background:var(--panel); border:1px solid var(--line); border-radius:var(--r-lg); padding:28px 26px;}
+  .terms-box h3{font-family:'Plus Jakarta Sans','Noto Sans JP',sans-serif; font-size:17px; font-weight:800; margin-bottom:6px;}
+  .terms-box > p.intro{font-size:13px; color:var(--muted); margin-bottom:18px; line-height:1.7;}
+  .terms-item{padding:14px 0; border-top:1px dashed var(--line);}
+  .terms-item:first-of-type{border-top:none; padding-top:4px;}
+  .terms-item b{display:block; font-size:14px; font-weight:700; margin-bottom:5px;}
+  .terms-item p{font-size:13.5px; line-height:1.85; color:var(--ink);}
+  .terms-item .ex{display:block; margin-top:7px; font-size:12.5px; color:var(--muted); background:#fff; border:1px solid var(--line); border-radius:var(--r-sm); padding:8px 11px; line-height:1.7;}
+  /* 予約前の安心ブロック */
+  .assure-line{display:inline-flex; align-items:center; gap:7px; margin:-16px auto 24px !important;
+    font-size:13px; color:var(--check-bright) !important; font-weight:600; line-height:1.5; white-space:nowrap;}
+  .assure-line svg{width:15px; height:15px; flex-shrink:0;}
+  @media (max-width:600px){.assure-line{font-size:12px; margin:-10px auto 20px !important;}}
 
   /* ---------- Section shells ---------- */
   section{padding:88px 0;}
@@ -338,6 +381,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .pt-best-badge{
     display:inline-block; background:var(--check); color:#fff;
     font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:4px; margin-bottom:5px;
+    letter-spacing:0.04em;
+  }
+  .pt-sub-badge{
+    display:inline-block; background:transparent; color:rgba(255,255,255,0.85);
+    border:1px solid rgba(255,255,255,0.5);
+    font-size:9.5px; font-weight:700; padding:1px 6px; border-radius:4px; margin-bottom:5px;
     letter-spacing:0.04em;
   }
   .pricing-note{font-size:12px; color:var(--muted); line-height:1.8; margin-bottom:28px;}
@@ -569,12 +618,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .final-cta p{color:#C7C7C3; max-width:460px; margin:0 auto 30px; font-size:15px;}
   .final-cta .btn-primary{background:#fff; color:var(--ink);}
   .final-cta .btn-primary:hover{background:#ECEAE2;}
+  /* 実際に予約が確定するボタンだけをオレンジにする（ページ内リンクと区別するため） */
+  .final-cta .bw-submit, .final-cta .bw-submit:hover{background:#F07D35; color:#fff;}
   .final-cta .micro{margin-top:16px; font-size:11.5px; color:#9A9A96; font-family:'Space Mono',monospace;}
 
   /* ---------- Booking embed（Googleカレンダー予約埋め込み） ---------- */
   .booking-fallback-note{margin-top:16px; font-size:12px; color:#9A9A96; line-height:1.7;}
   .booking-fallback-note a{color:var(--check-bright); text-decoration:underline; text-underline-offset:2px;}
-  @media (max-width:600px){.final-cta{padding:48px 22px;}}
+  @media (max-width:600px){.final-cta{padding:30px 16px 36px;} .final-cta h2{margin-bottom:10px;} .final-cta p{margin-bottom:20px; font-size:14px;}}
 
   /* ---------- Booking widget（オリジナル予約フォーム） ---------- */
   .booking-widget{margin:32px auto 0; max-width:460px; text-align:left;}
@@ -636,7 +687,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding:12px 14px; border-radius:9px; border:1.5px solid rgba(255,255,255,0.18); background:#fff; color:var(--ink);
     font-family:'Noto Sans JP',sans-serif; font-size:14px; font-weight:400; resize:vertical;
   }
-  .bw-submit{align-self:flex-start; margin-top:4px;}
+  .bw-submit{align-self:stretch; width:100%; justify-content:center; margin-top:8px; font-size:16px; padding:17px 0;}
   .bw-submit[disabled]{opacity:0.5; cursor:default;}
   .bw-done-icon{width:52px; height:52px; border-radius:50%; background:var(--check-bright); color:#0d1f16; font-size:24px; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;}
   .bw-step-done{text-align:center;}
@@ -823,14 +874,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-bg-slide" style="background-image:url('assets/images/hero-3.jpg');"></div>
   </div>
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-head">
 <p class="store-tag">白金高輪店</p>
       <p class="eyebrow">PERSONAL TRAINING GYM</p>
       <h1 class="display">特別じゃなくていい。<br>日常に溶け込む<wbr>パーソナル。</h1>
-      <p class="lead">白金高輪駅から徒歩6分。都心の静かな完全個室で、仕事帰りにも気軽に立ち寄れるパーソナルジムです。無理のない頻度と価格で、暮らしの一部として続けられる仕組みを大切にしています。</p>
+    </div>
+
+    <div class="hero-rest">
+      <p class="lead">白金高輪駅から徒歩6分。都心の静かな完全個室で、仕事帰りにも気軽に立ち寄れるパーソナルジムです。</p>
       <div class="cta-row">
-        <a href="#booking" class="btn btn-primary">無料体験に申し込む</a>
-        <a href="#pricing" class="btn btn-ghost">料金プランを見る</a>
+        <a href="#booking" class="btn btn-ghost btn-anchor">無料体験の予約枠を見る<span class="arw">↓</span></a>
       </div>
       <ul class="trust-row">
         <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>完全個室・マンツーマン</li>
@@ -840,22 +893,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
 
-    <div class="check-card reveal">
-      <div class="ribbon">表示金額がすべてです</div>
-      <h3>料金にまつわる、3つの正直な事実</h3>
-      <div class="check-row">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>
-        <div class="t"><b>入会金 ¥11,000（税込）</b><span>全プラン共通・これ以上は発生しません</span></div>
+    <div class="check-card price-card reveal">
+      <div class="ribbon">体験当日のご入会で入会金0円</div>
+      <div class="pc-price">
+        <span class="pc-amount">月額 ¥30,400</span><span class="pc-tilde">〜</span>
+        <span class="pc-note">6ヵ月プラン・月4回　／　1回あたり ¥7,600</span>
       </div>
       <div class="check-row">
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>
-        <div class="t"><b>セッション60分</b><span>プレミアム／スタンダードいずれも同じ時間です</span></div>
+        <div class="t"><b>まとまった前払いは不要。お支払いは毎月です</b><span>コース期間はプレミアム系6ヵ月／スタンダード系2ヵ月</span></div>
       </div>
       <div class="check-row">
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>
-        <div class="t"><b>あなたのペースで選んでOK</b><span>週1回でも週2回でも。頻度も期間も、続けやすさで選べます</span></div>
+        <div class="t"><b>追加費用なし</b><span>表示金額がすべてです。ウェア・シューズ・タオル無料貸出、プロテイン無料</span></div>
       </div>
-      <p class="foot-note">※詳しい料金は「料金プラン」セクションでご確認ください。</p>
+      <a href="#pricing" class="pc-link">料金プランをすべて見る →</a>
+      <p class="foot-note">※入会金は通常 ¥11,000（税込・全プラン共通）です。</p>
     </div>
   </div>
 </section>
@@ -893,50 +946,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ===== 4. SESSION ===== -->
-<section id="session">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow">SESSION</p>
-      <h2>入会後の流れ</h2>
-      <p>体験で何をするのか、毎回のセッションで何をするのか。通い始めてからの「思っていたのと違う」をなくすために、先にお伝えします。</p>
-    </div>
-    <div class="session-grid">
-      <div class="flow-panel trial reveal">
-        <div class="flow-panel-head"><h3>無料体験の流れ</h3><span class="dur">約60分・無料</span></div>
-        <p class="cap">当日のご入会を強制することはありません。</p>
-        <div class="flow-step">
-          <span class="flow-num">01</span>
-          <div><b>カウンセリング</b><span>目標・運動歴・お悩みや生活リズムをじっくりヒアリングします。</span></div>
-        </div>
-        <div class="flow-step">
-          <span class="flow-num">02</span>
-          <div><b>トレーニング体験</b><span>実際に体を動かして、トレーナーとの相性や雰囲気を確かめていただけます。</span></div>
-        </div>
-        <div class="flow-step">
-          <span class="flow-num">03</span>
-          <div><b>食事のアドバイス</b><span>普段の食事から、無理なく続けられる一歩をご提案します。</span></div>
-        </div>
-      </div>
-      <div class="flow-panel daily reveal">
-        <div class="flow-panel-head"><h3>毎回のセッション</h3><span class="dur">60分・完全個室</span></div>
-        <p class="cap">その日の体調に合わせて内容を調整します。</p>
-        <div class="flow-step">
-          <span class="flow-num">01</span>
-          <div><b>体重・コンディション測定</b><span>変化を数字で把握し、その日の体の状態を確認します。</span></div>
-        </div>
-        <div class="flow-step">
-          <span class="flow-num">02</span>
-          <div><b>食事フィードバック</b><span>前回からの食習慣を一緒に振り返り、次の一歩を決めます。</span></div>
-        </div>
-        <div class="flow-step">
-          <span class="flow-num">03</span>
-          <div><b>トレーニング</b><span>ウェイトトレーニング・コンディショニング・ストレッチを、お客様に合わせてカスタマイズします。</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ===== 5. HONEST PRICING ===== -->
 <section class="honest">
@@ -985,12 +995,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow">PRICING</p>
-      <h2>個人プラン・ペアプラン、<wbr>見たい方を選べます。</h2>
-      <p>すべて完全個室・60分のマンツーマン。違いは「頻度」と「期間」、そして1人か2人かだけです。</p>
+      <h2>月額 ¥30,400〜。<wbr>まとまった前払いは不要です。</h2>
+      <p>すべて完全個室・60分のマンツーマン。違いは「頻度」と「期間」、そして1人か2人かだけです。お支払いは毎月を基本としており、回数パックの一括前払いは不要です。</p>
     </div>
 
     <ul class="shared-conditions reveal">
-      <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>入会金 ¥11,000（税込・お一人様/全プラン共通）</li>
+      <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg><b>体験当日のご入会で入会金0円</b>（通常 ¥11,000・税込・お一人様/全プラン共通）</li>
+      <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg><b>まとまった前払いは不要。お支払いは毎月です</b>（コース期間はプレミアム系6ヵ月／スタンダード系2ヵ月）</li>
       <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>セッション 60分（全プラン共通）</li>
       <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>ウェア・シューズ・タオル無料貸出（手ぶらでOK）</li>
       <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>トレーニング後のプロテイン無料</li>
@@ -1010,11 +1021,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <thead>
           <tr>
             <th></th>
-            <th class="best-col">
-              <span class="pt-best-badge">最もお得</span><br>
+            <th>
+              <span class="pt-sub-badge">1回あたり最安</span><br>
               プレミアム
             </th>
-            <th>プレミアムライト</th>
+            <th class="best-col">
+              <span class="pt-best-badge">おすすめ</span><br>
+              プレミアムライト
+            </th>
             <th>スタンダード</th>
             <th>スタンダードライト</th>
           </tr>
@@ -1022,39 +1036,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <tbody>
           <tr>
             <td>1回あたり</td>
+            <td><b class="pt-per-session" style="font-size:18px;">¥6,500</b></td>
             <td class="best-col">
-              <b class="pt-per-session">¥6,500</b>
+              <b class="pt-per-session">¥7,600</b>
               <span class="pt-per-session-label">/ 60分セッション</span>
             </td>
-            <td><b class="pt-per-session" style="font-size:18px;">¥7,600</b></td>
             <td><b class="pt-per-session" style="font-size:18px;">¥8,150</b></td>
             <td><b class="pt-per-session" style="font-size:18px;">¥8,700</b></td>
           </tr>
           <tr>
             <td>月額（税込）</td>
-            <td class="best-col"><span class="pt-monthly">¥52,000</span></td>
-            <td><span class="pt-monthly">¥30,400</span></td>
+            <td><span class="pt-monthly">¥52,000</span></td>
+            <td class="best-col"><span class="pt-monthly">¥30,400</span></td>
             <td><span class="pt-monthly">¥65,200</span></td>
             <td><span class="pt-monthly">¥34,800</span></td>
           </tr>
           <tr>
             <td>コース期間</td>
-            <td class="best-col">6ヵ月</td>
             <td>6ヵ月</td>
+            <td class="best-col">6ヵ月</td>
             <td>2ヵ月</td>
             <td>2ヵ月</td>
           </tr>
           <tr>
             <td>頻度</td>
-            <td class="best-col">週2回</td>
-            <td>週1回</td>
+            <td>週2回</td>
+            <td class="best-col">週1回</td>
             <td>週2回</td>
             <td>週1回</td>
           </tr>
           <tr>
             <td>総回数</td>
-            <td class="best-col">48回</td>
-            <td>24回</td>
+            <td>48回</td>
+            <td class="best-col">24回</td>
             <td>16回</td>
             <td>8回</td>
           </tr>
@@ -1078,7 +1092,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="pair-copy">
               <p class="term">6ヵ月コース・週2回・全48回・60分セッション</p>
               <h3>ペアプレミアム</h3>
-              <p class="desc">お友達やパートナーと一緒に通えるプランです。お一人あたりの料金は、個人プランからおよそ25%お得になります。</p>
+              <p class="desc">お友達やパートナーと一緒に通えるプランです。お一人あたりの料金は、個人プランから約2割お得になります。</p>
               <ul>
                 <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>専属トレーナー1名が2名を担当</li>
                 <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>セッション内容・時間は個人プランと同条件</li>
@@ -1095,7 +1109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="value">¥41,000</span>
               </div>
               <hr>
-              <p class="note">※表示価格はお一人あたりです。実際のご請求は2名分の合計額（月額¥82,000・1回¥10,250）となります。入会金はお二人合わせて¥11,000（税込）です。</p>
+              <p class="note">※表示価格はお一人あたりです。実際のご請求は2名分の合計額（月額¥82,000・1回¥10,250）となります。入会金はお二人合わせて¥11,000（税込）、体験当日のご入会で0円です。</p>
             </div>
           </div>
         </div>
@@ -1123,7 +1137,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="value">¥23,800</span>
               </div>
               <hr>
-              <p class="note">※表示価格はお一人あたりです。実際のご請求は2名分の合計額（月額¥47,600・1回¥11,900）となります。入会金はお二人合わせて¥11,000（税込）です。</p>
+              <p class="note">※表示価格はお一人あたりです。実際のご請求は2名分の合計額（月額¥47,600・1回¥11,900）となります。入会金はお二人合わせて¥11,000（税込）、体験当日のご入会で0円です。</p>
             </div>
           </div>
         </div>
@@ -1131,11 +1145,229 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div><!-- /panel-pair -->
 
+    <div class="terms-box reveal">
+      <h3>休会・解約について</h3>
+      <p class="intro">ご入会前に知っておいていただきたい条件です。無料体験のときにも同じ内容をご説明します。</p>
+
+      <div class="terms-item">
+        <b>休会</b>
+        <p>休会中の料金はかかりません。コースの有効期限（プレミアム系は最長8ヵ月、スタンダード系は最長3ヵ月）の中で、残りの回数を使い切れる範囲であれば、いつでも休会できます。</p>
+      </div>
+
+      <div class="terms-item">
+        <b>途中解約</b>
+        <p>コースの途中で解約される場合は、それまでに受けたセッション回数分について、通常料金との差額をお支払いいただきます。差額は1回あたり、プレミアムライト ¥1,100、プレミアム ¥2,200、スタンダード ¥550 です（スタンダードライトは差額なし）。
+          <span class="ex">例：プレミアムライトを2ヵ月（8回）で解約した場合、差額は ¥8,800 です。</span>
+        </p>
+      </div>
+
+      <div class="terms-item">
+        <b>使わなかった分について</b>
+        <p>月額でお支払いの場合、使わなかったチケットの返金はありませんが、有効期限内であれば振替や休会で残りの回数を消化していただけます。一括でお支払いいただいた場合は、解約時に消化した回数分を通常料金で計算し、未消化分の残金をご返金します。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ===== 8. RESULTS ===== -->
+<section id="results" class="alt-bg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">RESULTS</p>
+      <h2>短期間で劇的に、ではなく。<wbr>続けた人に起きた変化。</h2>
+      <p>無理な追い込みではなく、続けられたからこその変化です。数字で、正直にご紹介します。</p>
+    </div>
+    <div class="result-grid">
+
+      <!-- 体重 -6kg -->
+      <div class="result-card reveal">
+        <div class="result-viz">
+          <div class="rc-top"><span class="rc-cap">体重の変化</span><span class="rc-delta">−6<small>kg</small></span></div>
+          <svg class="spark" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1E6F4F" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="#1E6F4F" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- グリッド線 -->
+            <line x1="0" y1="18" x2="200" y2="18" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <line x1="0" y1="36" x2="200" y2="36" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <line x1="0" y1="54" x2="200" y2="54" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <!-- グラデーション塗りつぶし -->
+            <polygon points="4,12 40,18 80,26 120,36 160,46 196,56 196,66 4,66" fill="url(#sparkGrad)"/>
+            <!-- 折れ線 -->
+            <polyline points="4,12 40,18 80,26 120,36 160,46 196,56" stroke="#1E6F4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- 開始点 -->
+            <circle cx="4" cy="12" r="4" fill="#fff" stroke="#1E6F4F" stroke-width="2"/>
+            <!-- 終了点 -->
+            <circle cx="196" cy="56" r="4" fill="#1E6F4F"/>
+            <!-- X軸 -->
+            <line x1="0" y1="66" x2="200" y2="66" stroke="#C7DDD1" stroke-width="1"/>
+          </svg>
+          <div class="spark-dates">
+            <span class="spark-date-start">2025年4月8日<br><small>ダイエット開始</small></span>
+            <span class="spark-date-end">2025年11月14日<br><small>−6kg 達成</small></span>
+          </div>
+          <div class="rc-caption">ランニングの習慣化と並行して</div>
+        </div>
+        <div class="result-body">
+          <div class="result-period">ダイエット成功</div>
+          <p class="result-quote">「ランニングの習慣化と合わせて、6kgほどのダイエットに成功できました」</p>
+          <div class="result-who">K.K 様</div>
+        </div>
+      </div>
+
+      <!-- 筋肉量 +2段階 -->
+      <div class="result-card reveal">
+        <div class="result-viz">
+          <div class="rc-top"><span class="rc-cap">筋肉量判定の変化</span><span class="rc-delta">+2<small>段階</small></span></div>
+          <div class="rank-flow">
+            <span class="rank-badge">少ない</span>
+            <span class="rank-arrow">→</span>
+            <span class="rank-badge">平均</span>
+            <span class="rank-arrow">→</span>
+            <span class="rank-badge on">やや多い</span>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="result-period">約1年 ／ 体組成計の判定</div>
+          <p class="result-quote">「体組成計の筋肉量が『少ない』から『やや多い』まで上がりました」</p>
+          <div class="result-who">Y.I 様</div>
+        </div>
+      </div>
+
+      <!-- 継続 2.5年 -->
+      <div class="result-card reveal">
+        <div class="result-viz">
+          <div class="rc-top"><span class="rc-cap">継続期間</span><span class="rc-delta">2.5<small>年</small></span></div>
+          <div class="cont-bar-wrap">
+            <div class="cont-bar-track">
+              <div class="cont-bar-fill"></div>
+              <div class="cont-bar-dot"></div>
+            </div>
+            <div class="cont-bar-labels">
+              <span>0</span>
+              <span>1年</span>
+              <span>2年</span>
+              <span class="now">2.5年<br><small>継続中</small></span>
+            </div>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="result-period">2.5年継続 ／ 週1回</div>
+          <p class="result-quote">「オープン当初から2年半、週1回ずっと続けられています」</p>
+          <div class="result-who">O.U 様</div>
+        </div>
+      </div>
+
+    </div>
+    <p class="result-note reveal">※ 記載の数値はお客様の実測値に基づく一例です。成果には個人差があります。</p>
+  </div>
+</section>
+
+<!-- ===== 9. VOICE ===== -->
+<section id="voice">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">VOICE</p>
+      <h2>無理なく続けられた人の声</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="testi-head">
+          <div class="avatar">O</div>
+          <div class="who">
+            <div class="name">o.u様</div>
+            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
+          </div>
+        </div>
+        <p>オープン当初からお世話になっていて、もう2年半になります。きっかけは家からの近さと料金でしたが、通ってみるとトレーナーがその日のコンディションに合わせてメニューを考えてくれるので、飽きずに週1回続けられています。ウェア・シューズ・タオルが無料で借りられるので、仕事前後でも手ぶらで通えるのが助かっています。</p>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-head">
+          <div class="avatar">Y</div>
+          <div class="who">
+            <div class="name">y.m様</div>
+            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
+          </div>
+        </div>
+        <p>毎回その時の自分に合わせてメニューを変えてくれます。トレーナーさんも気を遣わず話しやすい方で、女性でも通いやすいと感じました。ウェアの貸し出しもあり、店内も清潔です。都度払いができるのも続けやすいポイントでした。</p>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-head">
+          <div class="avatar">K</div>
+          <div class="who">
+            <div class="name">k.k様</div>
+            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
+          </div>
+        </div>
+        <p>趣味のランニングのパフォーマンス向上と、ダイエットの習慣化を目的に通っています。通い始めてから6kgほど体重が落ち、ボディラインも引き締まりました。施設も清潔感があり、女性一人でも気持ちよく集中して取り組める環境です。駅から近いのも通いやすいポイントです。</p>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-head">
+          <div class="avatar">A</div>
+          <div class="who">
+            <div class="name">a.o様</div>
+            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
+          </div>
+        </div>
+        <p>2020年から通っていて、何より続けやすさを感じています。その日の体調やコンディションを見ながら、痛みがある時も負担をかけない工夫をしてくれるので安心です。痩せたい時には食事のアドバイスも具体的にもらえ、トレーニングだけでなく生活全体をサポートしてもらえる感覚です。長く続けたい方には特におすすめです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. SESSION ===== -->
+<section id="session" class="alt-bg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">SESSION</p>
+      <h2>入会後の流れ</h2>
+      <p>体験で何をするのか、毎回のセッションで何をするのか。通い始めてからの「思っていたのと違う」をなくすために、先にお伝えします。</p>
+    </div>
+    <div class="session-grid">
+      <div class="flow-panel trial reveal">
+        <div class="flow-panel-head"><h3>無料体験の流れ</h3><span class="dur">約60分・無料</span></div>
+        <p class="cap">当日のご入会を強制することはありません。</p>
+        <div class="flow-step">
+          <span class="flow-num">01</span>
+          <div><b>カウンセリング</b><span>目標・運動歴・お悩みや生活リズムをじっくりヒアリングします。</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">02</span>
+          <div><b>トレーニング体験</b><span>実際に体を動かして、トレーナーとの相性や雰囲気を確かめていただけます。</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">03</span>
+          <div><b>食事のアドバイス</b><span>普段の食事から、無理なく続けられる一歩をご提案します。</span></div>
+        </div>
+      </div>
+      <div class="flow-panel daily reveal">
+        <div class="flow-panel-head"><h3>毎回のセッション</h3><span class="dur">60分・完全個室</span></div>
+        <p class="cap">その日の体調に合わせて内容を調整します。</p>
+        <div class="flow-step">
+          <span class="flow-num">01</span>
+          <div><b>体重・コンディション測定</b><span>変化を数字で把握し、その日の体の状態を確認します。</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">02</span>
+          <div><b>食事フィードバック</b><span>前回からの食習慣を一緒に振り返り、次の一歩を決めます。</span></div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">03</span>
+          <div><b>トレーニング</b><span>ウェイトトレーニング・コンディショニング・ストレッチを、お客様に合わせてカスタマイズします。</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ===== 7. STORES ===== -->
-<section id="stores" class="alt-bg">
+<section id="stores">
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow">STORES</p>
@@ -1291,173 +1523,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- OTHER STORE -->
-<section style="padding:24px 0 48px;">
-  <div class="wrap">
-    <div class="other-store-link reveal">
-      <p class="eyebrow">OTHER STORE</p>
-      <p>不動前店もあわせてご覧ください</p>
-      <a class='other-store-btn' href='/fudomae'>
-        <img loading="lazy" src="assets/images/store-fudomae.jpg" alt="不動前店">
-        <div class="other-store-info">
-          <span class="other-store-name">不動前店</span>
-          <span class="other-store-access">不動前駅 徒歩6分</span>
-          <span class="other-store-arrow">→</span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 8. RESULTS ===== -->
-<section id="results" class="alt-bg">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow">RESULTS</p>
-      <h2>短期間で劇的に、ではなく。<wbr>続けた人に起きた変化。</h2>
-      <p>無理な追い込みではなく、続けられたからこその変化です。数字で、正直にご紹介します。</p>
-    </div>
-    <div class="result-grid">
-
-      <!-- 体重 -6kg -->
-      <div class="result-card reveal">
-        <div class="result-viz">
-          <div class="rc-top"><span class="rc-cap">体重の変化</span><span class="rc-delta">−6<small>kg</small></span></div>
-          <svg class="spark" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#1E6F4F" stop-opacity="0.28"/>
-                <stop offset="100%" stop-color="#1E6F4F" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <!-- グリッド線 -->
-            <line x1="0" y1="18" x2="200" y2="18" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <line x1="0" y1="36" x2="200" y2="36" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <line x1="0" y1="54" x2="200" y2="54" stroke="#C7DDD1" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <!-- グラデーション塗りつぶし -->
-            <polygon points="4,12 40,18 80,26 120,36 160,46 196,56 196,66 4,66" fill="url(#sparkGrad)"/>
-            <!-- 折れ線 -->
-            <polyline points="4,12 40,18 80,26 120,36 160,46 196,56" stroke="#1E6F4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- 開始点 -->
-            <circle cx="4" cy="12" r="4" fill="#fff" stroke="#1E6F4F" stroke-width="2"/>
-            <!-- 終了点 -->
-            <circle cx="196" cy="56" r="4" fill="#1E6F4F"/>
-            <!-- X軸 -->
-            <line x1="0" y1="66" x2="200" y2="66" stroke="#C7DDD1" stroke-width="1"/>
-          </svg>
-          <div class="spark-dates">
-            <span class="spark-date-start">2025年4月8日<br><small>ダイエット開始</small></span>
-            <span class="spark-date-end">2025年11月14日<br><small>−6kg 達成</small></span>
-          </div>
-          <div class="rc-caption">ランニングの習慣化と並行して</div>
-        </div>
-        <div class="result-body">
-          <div class="result-period">ダイエット成功</div>
-          <p class="result-quote">「ランニングの習慣化と合わせて、6kgほどのダイエットに成功できました」</p>
-          <div class="result-who">K.K 様</div>
-        </div>
-      </div>
-
-      <!-- 筋肉量 +2段階 -->
-      <div class="result-card reveal">
-        <div class="result-viz">
-          <div class="rc-top"><span class="rc-cap">筋肉量判定の変化</span><span class="rc-delta">+2<small>段階</small></span></div>
-          <div class="rank-flow">
-            <span class="rank-badge">少ない</span>
-            <span class="rank-arrow">→</span>
-            <span class="rank-badge">平均</span>
-            <span class="rank-arrow">→</span>
-            <span class="rank-badge on">やや多い</span>
-          </div>
-        </div>
-        <div class="result-body">
-          <div class="result-period">約1年 ／ 体組成計の判定</div>
-          <p class="result-quote">「体組成計の筋肉量が『少ない』から『やや多い』まで上がりました」</p>
-          <div class="result-who">Y.I 様</div>
-        </div>
-      </div>
-
-      <!-- 継続 2.5年 -->
-      <div class="result-card reveal">
-        <div class="result-viz">
-          <div class="rc-top"><span class="rc-cap">継続期間</span><span class="rc-delta">2.5<small>年</small></span></div>
-          <div class="cont-bar-wrap">
-            <div class="cont-bar-track">
-              <div class="cont-bar-fill"></div>
-              <div class="cont-bar-dot"></div>
-            </div>
-            <div class="cont-bar-labels">
-              <span>0</span>
-              <span>1年</span>
-              <span>2年</span>
-              <span class="now">2.5年<br><small>継続中</small></span>
-            </div>
-          </div>
-        </div>
-        <div class="result-body">
-          <div class="result-period">2.5年継続 ／ 週1回</div>
-          <p class="result-quote">「オープン当初から2年半、週1回ずっと続けられています」</p>
-          <div class="result-who">O.U 様</div>
-        </div>
-      </div>
-
-    </div>
-    <p class="result-note reveal">※ 記載の数値はお客様の実測値に基づく一例です。成果には個人差があります。</p>
-  </div>
-</section>
-
-<!-- ===== 9. VOICE ===== -->
-<section id="voice">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow">VOICE</p>
-      <h2>無理なく続けられた人の声</h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi reveal">
-        <div class="testi-head">
-          <div class="avatar">O</div>
-          <div class="who">
-            <div class="name">o.u様</div>
-            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
-          </div>
-        </div>
-        <p>オープン当初からお世話になっていて、もう2年半になります。きっかけは家からの近さと料金でしたが、通ってみるとトレーナーがその日のコンディションに合わせてメニューを考えてくれるので、飽きずに週1回続けられています。ウェア・シューズ・タオルが無料で借りられるので、仕事前後でも手ぶらで通えるのが助かっています。</p>
-      </div>
-      <div class="testi reveal">
-        <div class="testi-head">
-          <div class="avatar">Y</div>
-          <div class="who">
-            <div class="name">y.m様</div>
-            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
-          </div>
-        </div>
-        <p>毎回その時の自分に合わせてメニューを変えてくれます。トレーナーさんも気を遣わず話しやすい方で、女性でも通いやすいと感じました。ウェアの貸し出しもあり、店内も清潔です。都度払いができるのも続けやすいポイントでした。</p>
-      </div>
-      <div class="testi reveal">
-        <div class="testi-head">
-          <div class="avatar">K</div>
-          <div class="who">
-            <div class="name">k.k様</div>
-            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
-          </div>
-        </div>
-        <p>趣味のランニングのパフォーマンス向上と、ダイエットの習慣化を目的に通っています。通い始めてから6kgほど体重が落ち、ボディラインも引き締まりました。施設も清潔感があり、女性一人でも気持ちよく集中して取り組める環境です。駅から近いのも通いやすいポイントです。</p>
-      </div>
-      <div class="testi reveal">
-        <div class="testi-head">
-          <div class="avatar">A</div>
-          <div class="who">
-            <div class="name">a.o様</div>
-            <div class="meta"><span class="stars">★★★★★</span>Google口コミより</div>
-          </div>
-        </div>
-        <p>2020年から通っていて、何より続けやすさを感じています。その日の体調やコンディションを見ながら、痛みがある時も負担をかけない工夫をしてくれるので安心です。痩せたい時には食事のアドバイスも具体的にもらえ、トレーニングだけでなく生活全体をサポートしてもらえる感覚です。長く続けたい方には特におすすめです。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== 10. FAQ ===== -->
 <section id="faq" class="alt-bg">
   <div class="wrap">
@@ -1480,15 +1545,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">休会はできますか？<span class="plus">+</span></button>
-        <div class="faq-a"><p>プレミアム・プレミアムライトは、コース期間（6ヵ月）に加えて2ヵ月の有効期限を設けています。スタンダード・スタンダードライトは、コース期間（2ヵ月）に加えて1ヵ月の有効期限を設けています。この有効期限内であれば休会が可能です。</p></div>
+        <div class="faq-a"><p>はい。休会中の料金はかかりません。コースの有効期限（プレミアム系は最長8ヵ月、スタンダード系は最長3ヵ月）の中で、残りの回数を使い切れる範囲であれば、いつでも休会できます。</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">途中で解約はできますか？<span class="plus">+</span></button>
-        <div class="faq-a"><p>まずは休会制度でご対応いただけます。そのうえで解約も可能ですが、別途違約金が発生します。詳細は無料体験時にご説明いたします。</p></div>
+        <div class="faq-a"><p>できます。それまでに受けたセッション回数分について、通常料金との差額をお支払いいただきます。差額は1回あたり、プレミアムライト ¥1,100、プレミアム ¥2,200、スタンダード ¥550 です（スタンダードライトは差額なし）。たとえばプレミアムライトを2ヵ月（8回）で解約した場合、差額は ¥8,800 です。</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">使わなかった分は返金されますか？<span class="plus">+</span></button>
-        <div class="faq-a"><p>退会時、ご利用のなかった未消化のチケットは返金いたします。</p></div>
+        <div class="faq-a"><p>月額でお支払いの場合、使わなかったチケットの返金はありませんが、有効期限内であれば振替や休会で残りの回数を消化していただけます。<br>一括でお支払いいただいた場合は、解約時に消化した回数分を通常料金で計算し、未消化分の残金をご返金します。</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">支払い方法は何が使えますか？<span class="plus">+</span></button>
@@ -1508,8 +1573,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="final-cta reveal">
       <p class="eyebrow" style="color:#9A9A96;">FIRST STEP</p>
-      <h2 class="display">まずは無料体験から、はじめてみませんか。</h2>
-      <p>ヒアリングと体験セッションは無料です。料金やプランも、その場で正直にお伝えします。以下からご希望の日時をお選びのうえ、そのままご予約ください。</p>
+      <h2 class="display">無料体験のご予約</h2>
+      <p>ヒアリングと体験セッションは無料です。ご希望の日時をお選びください。</p>
+      <p class="assure-line"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg>無料体験に契約の義務はありません</p>
 
       <div class="booking-widget reveal" id="booking-widget">
         <div class="bw-step" id="bw-step-date">
@@ -1549,6 +1615,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <p class="micro">所要時間 約60分 ー 当日入会の強制なし</p>
       <p class="booking-fallback-note">オンライン予約がうまくいかない場合は、お電話（<a href="tel:07015808302">070-1580-8302</a>）またはメール（<a href="mailto:info@dailyfit.jp">info@dailyfit.jp</a>）でも承ります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER STORE -->
+<section style="padding:24px 0 48px;">
+  <div class="wrap">
+    <div class="other-store-link reveal">
+      <p class="eyebrow">OTHER STORE</p>
+      <p>不動前店もあわせてご覧ください</p>
+      <a class='other-store-btn' href='/fudomae'>
+        <img loading="lazy" src="assets/images/store-fudomae.jpg" alt="不動前店">
+        <div class="other-store-info">
+          <span class="other-store-name">不動前店</span>
+          <span class="other-store-access">不動前駅 徒歩6分</span>
+          <span class="other-store-arrow">→</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1627,7 +1711,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- モバイル固定CTAバー -->
 <div class="sticky-cta-bar">
-  <a href="#booking">無料体験に申し込む</a>
+  <a href="#booking">無料体験の予約枠を見る<span class="arw">↓</span></a>
 </div>
 
 <script>
@@ -1703,6 +1787,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   }, { threshold: 0.15 });
   reveals.forEach(el => obs.observe(el));
+
+  /* 予約セクションが見えている間は固定CTAバーを隠す
+     （ページ内リンクの「無料体験に申し込む」が、実際の送信ボタン
+       「この内容で予約する」と並んで出てしまうのを防ぐ） */
+  (function () {
+    const bar = document.querySelector('.sticky-cta-bar');
+    const booking = document.getElementById('booking');
+    if (!bar || !booking) return;
+    if (!('IntersectionObserver' in window)) return;
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => bar.classList.toggle('is-hidden', e.isIntersecting));
+    }, { rootMargin: '0px 0px -40% 0px' });
+    barObs.observe(booking);
+  })();
 
   /* トレーナー写真ライトボックス */
   function openPhotoLightbox(avatarEl) {
