@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /shirokanetakanawa-b
-Disallow: /shirokanetakanawa-b.html
 
 Sitemap: https://dailyfit.jp/sitemap.xml
